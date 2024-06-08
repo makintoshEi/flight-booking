@@ -7,6 +7,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatStepperModule } from '@angular/material/stepper'
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { Observable, map, startWith } from 'rxjs';
 import { SFCONSTANT } from './select-flight-options.constants';
@@ -23,6 +24,7 @@ import { OptionType, TripWay } from './types/select-flight.type';
     MatDatepickerModule,
     MatInputModule,
     MatFormFieldModule,
+    MatStepperModule,
     ReactiveFormsModule],
   providers: [provideNativeDateAdapter()],
   templateUrl: './select-flight-options.component.html',
@@ -37,6 +39,7 @@ export class SelectFlightOptionsComponent implements OnInit {
   filteredOriginOptions!: Observable<OptionType[]> | undefined;
   filteredDestinyOptions!: Observable<OptionType[]> | undefined;
   tripWaySelected: TripWay = 'roundtrip'
+  today = new Date()
   withLuggage = false
 
   ngOnInit() {
@@ -44,7 +47,7 @@ export class SelectFlightOptionsComponent implements OnInit {
       [this.formControlNames.tripWay]: new FormControl(this.tripWaySelected, Validators.required),
       [this.formControlNames.origin]: new FormControl(null, Validators.required),
       [this.formControlNames.destiny]: new FormControl(null, Validators.required),
-      [this.formControlNames.departDate]: new FormControl(null, Validators.required),
+      [this.formControlNames.departDate]: new FormControl(null, [Validators.required]),
       [this.formControlNames.returnDate]: new FormControl(null, Validators.required),
       [this.formControlNames.passengersNumber]: new FormControl(1, [Validators.required, Validators.min(1)]),
       [this.formControlNames.withLugagge]: new FormControl(false),
