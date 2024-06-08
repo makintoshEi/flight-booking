@@ -1,0 +1,24 @@
+.select-flight {
+
+    &__container {
+        display: flex;
+        flex-direction: column;
+        max-width: 480px;
+        margin: auto auto;
+    }
+
+    &__header {
+        display: flex;
+        align-items: center;
+        width: 480px;
+    }
+
+    &__group {
+        display: flex;
+        align-items: center;
+    }
+
+    &__full-width {
+        width: 100%;
+    }
+}

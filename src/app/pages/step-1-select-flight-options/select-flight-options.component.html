@@ -1,1 +1,76 @@
-<p>select-flight-options works!</p>
+<section class="mt-16">
+        <form [formGroup]="selectFlightForm" class="select-flight__container">
+            <div class="select-flight__header">
+                <h1>Vuelos</h1>
+                <mat-button-toggle-group
+                class="ml-16"
+                    name="tripway"
+                    aria-label="Tipo de vuelo"
+                    [formControlName]="formControlNames.tripWay"
+                >
+                    <mat-button-toggle value="roundtrip">Ida y Vuelta</mat-button-toggle>
+                    <mat-button-toggle value="oneway">Solo ida</mat-button-toggle>
+                </mat-button-toggle-group>
+            </div>
+            
+            <div class="mt-16">
+                <div class="select-flight__group">
+                    <mat-form-field class="select-flight__full-width mr-16">
+                        <mat-label>Origen</mat-label>
+                        <input type="text"
+                               placeholder="Elige el origen"
+                               aria-label="Origen"
+                               matInput
+                               [formControlName]="formControlNames.origin"
+                               [matAutocomplete]="autoOrigin">
+                               <mat-autocomplete #autoOrigin="matAutocomplete">
+                                @for (option of filteredOriginOptions | async; track option.key) {
+                                  <mat-option [value]="option.key">{{option.value}}</mat-option>
+                                }
+                              </mat-autocomplete>
+                    </mat-form-field>
+        
+                    <mat-form-field class="select-flight__full-width">
+                        <mat-label>Destino</mat-label>
+                        <input type="text"
+                               placeholder="Elige el destino"
+                               aria-label="Destino"
+                               matInput
+                               [formControlName]="formControlNames.destiny"
+                               [matAutocomplete]="autoDestiny">
+                               <mat-autocomplete #autoDestiny="matAutocomplete">
+                                @for (option of filteredDestinyOptions | async; track option.key) {
+                                  <mat-option [value]="option.key">{{option.value}}</mat-option>
+                                }
+                              </mat-autocomplete>
+                    </mat-form-field>
+                </div>
+                <div class="select-flight__group mt-8">
+                    <mat-form-field class="select-flight__full-width mr-16">
+                        <mat-label>Fecha de salida</mat-label>
+                        <input matInput [matDatepicker]="pickerDepart" [formControlName]="formControlNames.departDate">
+                        <mat-datepicker-toggle matIconSuffix [for]="pickerDepart"></mat-datepicker-toggle>
+                        <mat-datepicker #pickerDepart></mat-datepicker>
+                    </mat-form-field>
+                    <mat-form-field class="select-flight__full-width">
+                        <mat-label>Fecha de retorno</mat-label>
+                        <input matInput [matDatepicker]="pickerReturn" [formControlName]="formControlNames.returnDate">
+                        <mat-datepicker-toggle matIconSuffix [for]="pickerReturn"></mat-datepicker-toggle>
+                        <mat-datepicker #pickerReturn></mat-datepicker>
+                    </mat-form-field>
+                </div>
+                <div class="select-flight__group mt-8">
+                    <mat-form-field class="select-flight__full-width mr-16">
+                        <mat-label>Pasajeros</mat-label>
+                        <input matInput type="number" [formControlName]="formControlNames.passengersNumber">
+                    </mat-form-field>
+                    <button 
+                        class="select-flight__full-width" 
+                        mat-flat-button 
+                        color="primary"
+                        [disabled]="selectFlightForm.status === 'INVALID'">Buscar</button>
+                </div>
+            </div>
+              
+        </form>
+</section>
