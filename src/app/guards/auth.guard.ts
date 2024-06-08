@@ -9,7 +9,8 @@ export class AuthCanActivateGuard {
     navigationService = inject(NavigationService)
 
     canActivate(_route: ActivatedRouteSnapshot, _state: RouterStateSnapshot): boolean {
-        if (this.authService.isAuthenticated) {
+        console.log(this.authService.isAuthenticated.getValue())
+        if (this.authService.isAuthenticated.getValue()) {
             return true
         } else {
             this.navigationService.navigateToLocal(BookFlightRoute.Init)
