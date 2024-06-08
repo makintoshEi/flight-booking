@@ -47,7 +47,7 @@ export class SelectFlightOptionsComponent implements OnInit {
       [this.formControlNames.tripWay]: new FormControl(this.tripWaySelected, Validators.required),
       [this.formControlNames.origin]: new FormControl(null, Validators.required),
       [this.formControlNames.destiny]: new FormControl(null, Validators.required),
-      [this.formControlNames.departDate]: new FormControl(null, [Validators.required]),
+      [this.formControlNames.departDate]: new FormControl(null, Validators.required),
       [this.formControlNames.returnDate]: new FormControl(null, Validators.required),
       [this.formControlNames.passengersNumber]: new FormControl(1, [Validators.required, Validators.min(1)]),
       [this.formControlNames.withLugagge]: new FormControl(false),
@@ -63,6 +63,8 @@ export class SelectFlightOptionsComponent implements OnInit {
     })
     this.optionsFilter()
   }
+
+  
 
 
   optionsFilter() {

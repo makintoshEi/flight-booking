@@ -46,20 +46,22 @@
                 </mat-form-field>
             </div>
             <div class="select-flight__group mt-8">
-                <mat-form-field class="select-flight__full-width mr-16">
+                <mat-form-field class="select-flight__full-width">
                     <mat-label>Fecha de salida</mat-label>
                     <input matInput [matDatepicker]="pickerDepart" [formControlName]="formControlNames.departDate"
                     [min]="today">
                     <mat-datepicker-toggle matIconSuffix [for]="pickerDepart"></mat-datepicker-toggle>
                     <mat-datepicker #pickerDepart></mat-datepicker>
                 </mat-form-field>
-                <mat-form-field class="select-flight__full-width">
-                    <mat-label>Fecha de retorno</mat-label>
-                    <input matInput [matDatepicker]="pickerReturn" [formControlName]="formControlNames.returnDate" 
-                    [min]="selectFlightForm.get(formControlNames.departDate)?.value">
-                    <mat-datepicker-toggle matIconSuffix [for]="pickerReturn"></mat-datepicker-toggle>
-                    <mat-datepicker #pickerReturn></mat-datepicker>
-                </mat-form-field>
+                @if (selectFlightForm.get(formControlNames.tripWay)?.value === 'roundtrip') {
+                    <mat-form-field class="select-flight__full-width ml-16">
+                        <mat-label>Fecha de retorno</mat-label>
+                        <input matInput [matDatepicker]="pickerReturn" [formControlName]="formControlNames.returnDate" 
+                        [min]="selectFlightForm.get(formControlNames.departDate)?.value">
+                        <mat-datepicker-toggle matIconSuffix [for]="pickerReturn"></mat-datepicker-toggle>
+                        <mat-datepicker #pickerReturn></mat-datepicker>
+                    </mat-form-field>
+                }
             </div>
             <div class="select-flight__group mt-8">
                 <mat-form-field class="select-flight__full-width mr-16">
