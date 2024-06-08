@@ -1,8 +1,7 @@
-import { AuthCanActivateGuard } from './auth.guard'
-import { TransferComponent } from '../pages/transfers/screens/step-2-transfer/transfer.component'
-import { AuthService } from '../services'
 import { TestBed } from '@angular/core/testing'
 import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router'
+import { AuthCanActivateGuard } from './auth.guard'
+import { AuthService } from '../services/'
 
 describe('Authentication Guard suite', () => {
     let guard: AuthCanActivateGuard
