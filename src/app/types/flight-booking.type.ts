@@ -1,11 +1,16 @@
+type CountryType = {
+    key: string;
+    value: string;
+}
+
 type TripWay = 'oneway' | 'roundtrip'
 
 type FlightBookingType = {
     departDay: Date | null;
-    destiny: string;
-    departFlightInfo: FlightInfoType;
-    returnFlightInfo: FlightInfoType;
-    origin: string;
+    destiny: CountryType;
+    departFlightInfo?: FlightInfoType;
+    returnFlightInfo?: FlightInfoType;
+    origin: CountryType;
     passengersNumber: string;
     returnDate: Date | null;
     tripWay: TripWay;
@@ -24,5 +29,5 @@ type FlightInfoType = {
 }
 
 export {
-    FlightBookingType, FlightInfoType, TripWay
+    CountryType, FlightBookingType, FlightInfoType, TripWay
 }

@@ -11,7 +11,7 @@ import { MatStepperModule } from '@angular/material/stepper'
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { Observable, map, startWith } from 'rxjs';
 import { SFCONSTANT } from './select-flight-options.constants';
-import { OptionType } from './types/select-flight.type';
+import { CountryType } from '../../types/flight-booking.type';
 import { TripWay } from '../../types/flight-booking.type'
 import { NavigationService } from '../../services';
 import { FlightsBookingRoute } from '../../app.constants';
@@ -40,8 +40,8 @@ export class SelectFlightOptionsComponent implements OnInit {
   selectFlightForm!: FormGroup;
   originOptions = [...SFCONSTANT.OPTIONS]
   destinyOptions = [...SFCONSTANT.OPTIONS]
-  filteredOriginOptions!: Observable<OptionType[]> | undefined;
-  filteredDestinyOptions!: Observable<OptionType[]> | undefined;
+  filteredOriginOptions!: Observable<CountryType[]> | undefined;
+  filteredDestinyOptions!: Observable<CountryType[]> | undefined;
   tripWaySelected: TripWay = 'roundtrip'
   today = new Date()
   withLuggage = false
@@ -83,12 +83,16 @@ export class SelectFlightOptionsComponent implements OnInit {
       );
   }
 
-  private _filter(value: string, options: OptionType[]): OptionType[] {
+  private _filter(value: string, options: CountryType[]): CountryType[] {
     return options.filter(option => option.value.toLowerCase().includes(value.toLowerCase()))
   }
 
   private _getFormValues(controlName: string): any {
     return this.selectFlightForm.get(controlName)?.value
+  }
+
+  displayFn(option: CountryType): string {
+    return `${option.value}, ${option.key}`
   }
 
   next() {

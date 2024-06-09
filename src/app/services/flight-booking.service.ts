@@ -1,11 +1,11 @@
 import { Injectable } from "@angular/core";
-import { FlightBookingType, FlightInfoType } from "../types/flight-booking.type";
+import { CountryType, FlightBookingType, FlightInfoType } from "../types/flight-booking.type";
 
 @Injectable({
     providedIn: 'root'
 })
 export class FlightBookingService {
-    flightBookingForm: Partial<FlightBookingType> = this.getCleanContext()
+    flightBookingForm: FlightBookingType = this.getCleanContext()
 
     resetContext() {
         this.flightBookingForm = this.getCleanContext()
@@ -14,9 +14,9 @@ export class FlightBookingService {
     getCleanContext(): FlightBookingType {
         return {
             departDay: null,
-            destiny: '',
+            destiny: this.getCleanCountryContext(),
             departFlightInfo: this.getCleanFlightInfoContext(),
-            origin: '',
+            origin: this.getCleanCountryContext(),
             passengersNumber: '0',
             returnDate: null,
             returnFlightInfo: this.getCleanFlightInfoContext(),
@@ -35,6 +35,13 @@ export class FlightBookingService {
             operator: '',
             originIata: '',
             takeOffHour: '',
+        }
+    }
+
+    getCleanCountryContext(): CountryType {
+        return {
+            key: '',
+            value: ''
         }
     }
 }

@@ -23,9 +23,9 @@
                         matInput
                         [formControlName]="formControlNames.origin"
                         [matAutocomplete]="autoOrigin">
-                        <mat-autocomplete #autoOrigin="matAutocomplete">
+                        <mat-autocomplete #autoOrigin="matAutocomplete" [displayWith]="displayFn">
                             @for (option of filteredOriginOptions | async; track option.key) {
-                            <mat-option [value]="option.value">{{option.value + ', '+option.key}}</mat-option>
+                            <mat-option [value]="option">{{option.value+ ', '+option.key}}</mat-option>
                             }
                         </mat-autocomplete>
                 </mat-form-field>
@@ -38,9 +38,9 @@
                         matInput
                         [formControlName]="formControlNames.destiny"
                         [matAutocomplete]="autoDestiny">
-                        <mat-autocomplete #autoDestiny="matAutocomplete">
+                        <mat-autocomplete #autoDestiny="matAutocomplete" [displayWith]="displayFn">
                             @for (option of filteredDestinyOptions | async; track option.key) {
-                            <mat-option [value]="option.value">{{option.value + ', '+option.key}}</mat-option>
+                            <mat-option [value]="option">{{option.value + ', '+option.key}}</mat-option>
                             }
                         </mat-autocomplete>
                 </mat-form-field>
