@@ -1,1 +1,20 @@
-
+@for (form of passengerForms; track form;) {
+    <fb-person-info [index]="$index" [personForm]="form"></fb-person-info>
+}
+<form [formGroup]="principalForm">
+    <h4>Titular de la Reserva</h4>
+    <mat-form-field class="full-width">
+        <mat-label>Email</mat-label>
+        <input matInput placeholder="Ex. xyz@domain.com" [formControlName]="principalEmail">
+    </mat-form-field>
+    <mat-form-field class="full-width">
+        <mat-label>Número de teléfono</mat-label>
+        <input matInput placeholder="Ex. +593 99443110" [formControlName]="principalPhoneNumber">
+    </mat-form-field>
+    <button 
+        class="full-width" 
+        mat-flat-button 
+        color="primary"
+        [disabled]="principalForm.status === 'INVALID' || !formGroupIsValid"
+        (click)="next()">Continuar</button>
+</form>

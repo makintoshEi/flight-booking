@@ -64,8 +64,7 @@ export class SelectFlightOptionsComponent implements OnInit {
       [this.formControlNames.destiny]: new FormControl(null, Validators.required),
       [this.formControlNames.departDate]: new FormControl(null, Validators.required),
       [this.formControlNames.returnDate]: new FormControl(null, Validators.required),
-      [this.formControlNames.passengersNumber]: new FormControl(1, [Validators.required, Validators.min(1)]),
-      [this.formControlNames.withLugagge]: new FormControl(false),
+      [this.formControlNames.passengersNumber]: new FormControl(1, [Validators.required, Validators.min(1)])
     })
     this.selectFlightForm.get(this.formControlNames.tripWay)?.valueChanges.subscribe({
       next: (tripWay: TripWay) => {
@@ -127,8 +126,7 @@ export class SelectFlightOptionsComponent implements OnInit {
       origin: this._getFormValues(this.formControlNames.origin),
       passengersNumber: this._getFormValues(this.formControlNames.passengersNumber),
       returnDate: this._getFormValues(this.formControlNames.returnDate),
-      tripWay: this._getFormValues(this.formControlNames.tripWay),
-      withLuggage: this._getFormValues(this.formControlNames.withLugagge),
+      tripWay: this._getFormValues(this.formControlNames.tripWay)
     }
     this.navigationService.navigateToLocal(FlightsBookingRoute.StepTwo)
   }

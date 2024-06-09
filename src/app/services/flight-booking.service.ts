@@ -18,10 +18,10 @@ export class FlightBookingService {
             departFlightInfo: this._getCleanFlightInfoContext(),
             origin: this._getCleanCountryContext(),
             passengersNumber: '0',
+            passengers: [],
             returnDate: null,
             returnFlightInfo: this._getCleanFlightInfoContext(),
-            tripWay: 'roundtrip',
-            withLuggage: false
+            tripWay: 'roundtrip'
         }
     }
 

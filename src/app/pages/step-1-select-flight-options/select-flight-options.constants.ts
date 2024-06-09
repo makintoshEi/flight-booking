@@ -5,7 +5,6 @@ export const SFCONSTANT = {
         destiny: 'destiny',
         departDate: 'departDate',
         returnDate: 'returnDate',
-        passengersNumber: 'passengersNumber',
-        withLugagge: 'withLugagge'
+        passengersNumber: 'passengersNumber'
     }
 }

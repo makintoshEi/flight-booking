@@ -12,9 +12,10 @@ type FlightBookingType = {
     returnFlightInfo?: FlightInfoType;
     origin: CountryType;
     passengersNumber: string;
+    passengers?: PassengerType[];
+    principal?: PrincipalType;
     returnDate: Date | null;
     tripWay: TripWay;
-    withLuggage: boolean;
 }
 
 type FlightInfoType = {
@@ -28,10 +29,25 @@ type FlightInfoType = {
     flightCost: string;
 }
 
+type PassengerType = {
+    birthDate: string;
+    gender: 'O' | 'M' | 'F';
+    lastname: string;
+    nacionality: string;
+    name: string;
+    withLuggage: boolean;
+}
+
+type PrincipalType = {
+    email: string;
+    phoneNumber: string;
+}
+
 type FlightSearchResponse = {
     flights: FlightInfoType[]
 }
 
 export {
-    CountryType, FlightBookingType, FlightInfoType, FlightSearchResponse, TripWay
+    CountryType, FlightBookingType, FlightInfoType,
+    FlightSearchResponse, PassengerType, TripWay
 }
