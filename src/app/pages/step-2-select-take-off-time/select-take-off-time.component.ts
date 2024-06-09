@@ -49,7 +49,18 @@ export class SelectTakeOffTimeComponent implements OnInit {
   onDepartFlightSelected(flightSelected: FlightInfoType) {
     this.fbService.flightBookingForm.departFlightInfo = flightSelected
     if (this.fbService.flightBookingForm.tripWay === 'roundtrip') {
-
+      this.getFlights(this.fbService.flightBookingForm.destiny.key, this.fbService.flightBookingForm.origin.key)
+        .subscribe(
+          {
+            next: (response) => {
+              this.returnFlights = response.flights;
+              this.showReturnSection = true
+            },
+            error: (err) => {
+              console.error(err)
+            }
+          }
+        )
       return
     }
     this.next()
