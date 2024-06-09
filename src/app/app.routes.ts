@@ -6,7 +6,7 @@ export const routes: Routes = [
     {
         path: '',
         pathMatch: 'full',
-        redirectTo: BookFlightRoute.Init
+        redirectTo: BookFlightRoute.TakeOff
     },
     {
         path: BookFlightRoute.Init,
@@ -17,7 +17,7 @@ export const routes: Routes = [
         path: BookFlightRoute.TakeOff,
         loadComponent: () => import('./pages/step-2-select-take-off-time/select-take-off-time.component')
             .then(m => m.SelectTakeOffTimeComponent),
-        canActivate: [isAuthGuard]
+        // canActivate: [isAuthGuard]
     },
     {
         path: BookFlightRoute.PassengerInfo,
@@ -33,6 +33,6 @@ export const routes: Routes = [
     },
     {
         path: '**',
-        redirectTo: BookFlightRoute.Init
+        redirectTo: BookFlightRoute.TakeOff
     }
 ];

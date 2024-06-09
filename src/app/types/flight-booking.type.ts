@@ -10,6 +10,17 @@ type FlightBookingType = {
     withLuggage: boolean;
 }
 
+type FlightInfoType = {
+    arrivedHour: string;
+    destinyIata: string;
+    durationTime: string;
+    id: string;
+    operator: 'avianca' | 'jetsmart'
+    originIata: string;
+    takeOffHour: string;
+    flightCost: string;
+}
+
 export {
-    FlightBookingType, TripWay
+    FlightBookingType, FlightInfoType, TripWay
 }

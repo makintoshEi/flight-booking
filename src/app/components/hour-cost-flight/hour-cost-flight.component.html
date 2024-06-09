@@ -1,18 +1,31 @@
-<div class="hour-cost">
+<div
+    class="hour-cost"
+    (click)="selectFlight()"
+    (keypress)="selectFlight()"
+>
     <div class="column">
         <span class="hour-typography">{{takeOffHour()}}</span>
         <span class="iata-typography">{{originIata()}}</span>
     </div>
+    <div class="column center">
+        <mat-icon
+            aria-hidden="false"
+            aria-label="Example home icon"
+            fontIcon="flight"
+        ></mat-icon>
+        <span class="hour-cost__duration-time mt-8">Directo</span>
+        <span class="hour-cost__duration-time mt-8">{{durationTime()}}</span>
+    </div>
     <div class="row">
         <div class="column">
-            <span class="hour-typography">{{checkInHour()}}</span>
+            <span class="hour-typography">{{arrivedHour()}}</span>
             <span class="iata-typography">{{destinyIata()}}</span>
         </div>
         <div class="hour-cost__operator column center">
             <span class="by">Operado por</span>
             <img
                 alt="logo operadora"
-                src="assets/avianca-logo.svg"
+                [src]="'assets/'+operator()+'.svg'"
             >
         </div>
         <div class="column price-currency">

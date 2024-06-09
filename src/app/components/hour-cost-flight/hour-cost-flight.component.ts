@@ -1,19 +1,28 @@
-import { Component, input } from '@angular/core';
-import { CurrencyPipe, registerLocaleData } from '@angular/common';
-import localeEC from '@angular/common/locales/es-EC'
-registerLocaleData(localeEC, 'es');
+import { Component, input, output } from '@angular/core';
+import { CurrencyPipe } from '@angular/common';
+import { MatIconModule } from '@angular/material/icon'
 
 @Component({
-  selector: 'app-hour-cost-flight',
+  selector: 'fb-hour-cost-flight',
   standalone: true,
-  imports: [CurrencyPipe],
+  imports: [CurrencyPipe, MatIconModule],
   templateUrl: './hour-cost-flight.component.html',
   styleUrl: './hour-cost-flight.component.scss'
 })
 export class HourCostFlightComponent {
-  checkInHour = input<string>('')
+
+  arrivedHour = input<string>('')
   destinyIata = input<string>('')
+  durationTime = input<string>('')
+  operator = input<string>('')
   originIata = input<string>('')
   takeOffHour = input<string>('')
   flightCost = input<string>('')
+
+  selectFlightEvent = output();
+
+  selectFlight() {
+    this.selectFlightEvent.emit()
+  }
+
 }

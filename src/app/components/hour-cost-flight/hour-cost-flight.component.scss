@@ -4,6 +4,7 @@ $breakpoint-tablet: 61.9375rem;
     display: flex;
     border-radius: 16px;
     box-shadow: 0 .125rem .75rem rgba(27, 27, 27, .15);
+    cursor: pointer;
     justify-content: space-between;
     padding: 2.125rem 1.4375rem 1.375rem 2.625rem;
 
@@ -24,6 +25,14 @@ $breakpoint-tablet: 61.9375rem;
             margin-left: 0;
         }
 
+    }
+
+    &__duration-time {
+        font-size: .875rem;
+        order: 2;
+        font-weight: 700;
+        color: #5a5a5a;
+        line-height: 1.323;
     }
 }
 

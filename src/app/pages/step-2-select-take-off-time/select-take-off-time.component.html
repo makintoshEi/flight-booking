@@ -1,1 +1,13 @@
-<p>select-take-off-time works!</p>
+<div class="take-off">
+    @for(option of hourCostArr; track option.id) {
+        <fb-hour-cost-flight 
+        [arrivedHour]="option.arrivedHour" 
+        [destinyIata]="option.destinyIata"
+        [durationTime]="option.durationTime"
+        [flightCost]="option.flightCost"
+        [operator]="option.operator"
+        [originIata]="option.originIata"
+        [takeOffHour]="option.takeOffHour"
+        (selectFlightEvent)="handleFlightSelection(option)"></fb-hour-cost-flight>
+    }
+</div>
