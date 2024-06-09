@@ -36,7 +36,7 @@ export class PassengerInfoComponent implements OnInit {
       [PICONSTANT.FORM.EMAIL]: new FormControl(null, [Validators.required, Validators.email]),
       [PICONSTANT.FORM.PHONENUMBER]: new FormControl(null, [Validators.required, Validators.pattern(/^(?:[+\d].*\d|\d)$/)]),
     })
-    for (let i = 0; i < +this.fbService.flightBookingForm.passengersNumber; i++) {
+    for (let i = 0; i < 2; i++) {
       this.passengerForms.push(this.getFormGroup())
     }
   }

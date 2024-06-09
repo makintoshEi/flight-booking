@@ -1,31 +1,37 @@
 <form [formGroup]="personForm" class="select-flight__container">
     <h4>Persona {{index() + 1}}</h4>
-    <mat-form-field>
-        <mat-label>Género</mat-label>
-        <mat-select [formControlName]="formControlNames.GENDER">
-            @for (gender of genders; track gender) {
-            <mat-option [value]="gender.value">{{gender.viewValue}}</mat-option>
-            }
-        </mat-select>
-    </mat-form-field>
-    <mat-form-field class="example-full-width">
-        <mat-label>Primer Nombre</mat-label>
-        <input matInput placeholder="Ex. Lebron" [formControlName]="formControlNames.NAME">
-    </mat-form-field>
-    <mat-form-field class="example-full-width">
-        <mat-label>Primer Apellido</mat-label>
-        <input matInput placeholder="Ex. James" [formControlName]="formControlNames.LASTNAME">
-    </mat-form-field>
-    <mat-form-field class="select-flight__full-width">
-        <mat-label>Fecha Nacimiento</mat-label>
-        <input matInput [matDatepicker]="pickerBirthDate" [formControlName]="formControlNames.BIRTHDATE"
-        [max]="currentDate">
-        <mat-datepicker-toggle matIconSuffix [for]="pickerBirthDate"></mat-datepicker-toggle>
-        <mat-datepicker #pickerBirthDate></mat-datepicker>
-    </mat-form-field>
-    <mat-form-field class="example-full-width">
-        <mat-label>Nacionalidad</mat-label>
-        <input matInput placeholder="Ex. Ecuador" [formControlName]="formControlNames.NACIONALITY">
-    </mat-form-field>
-    <p><mat-slide-toggle labelPosition="before" [formControlName]="formControlNames.LUGGAGE">Tiene equipaje ?</mat-slide-toggle></p>
+    <div class="row">
+        <mat-form-field class="full-width">
+            <mat-label>Género</mat-label>
+            <mat-select [formControlName]="formControlNames.GENDER">
+                @for (gender of genders; track gender) {
+                <mat-option [value]="gender.value">{{gender.viewValue}}</mat-option>
+                }
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field class="full-width ml-16">
+            <mat-label>Primer Nombre</mat-label>
+            <input matInput placeholder="Ex. Lebron" [formControlName]="formControlNames.NAME">
+        </mat-form-field>
+        <mat-form-field class="full-width ml-16">
+            <mat-label>Primer Apellido</mat-label>
+            <input matInput placeholder="Ex. James" [formControlName]="formControlNames.LASTNAME">
+        </mat-form-field>
+    </div>
+    <div class="row">
+        <mat-form-field class="full-width">
+            <mat-label>Fecha Nacimiento</mat-label>
+            <input matInput [matDatepicker]="pickerBirthDate" [formControlName]="formControlNames.BIRTHDATE"
+            [max]="currentDate">
+            <mat-datepicker-toggle matIconSuffix [for]="pickerBirthDate"></mat-datepicker-toggle>
+            <mat-datepicker #pickerBirthDate></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field class="full-width ml-16">
+            <mat-label>Nacionalidad</mat-label>
+            <input matInput placeholder="Ex. Ecuador" [formControlName]="formControlNames.NACIONALITY">
+        </mat-form-field>
+        <div class="full-width ml-16">
+            <p><mat-slide-toggle labelPosition="before" [formControlName]="formControlNames.LUGGAGE">Tiene equipaje ?</mat-slide-toggle></p>
+        </div>
+    </div>
 </form>
