@@ -132,10 +132,18 @@ export class SelectTakeOffTimeComponent {
     if (this.fbService.flightBookingForm.tripWay === 'roundtrip') {
       // call API
       setTimeout(() => this.showReturnSection = true, 1000)
-    } else {
-      this.navigateService.navigateToLocal(FlightsBookingRoute.StepThree)
+      return
     }
+    this.next()
+  }
 
+  onReturnFlightSelected(flightSelected: FlightInfoType) {
+    this.fbService.flightBookingForm.returnFlightInfo = flightSelected
+    this.next()
+  }
+
+  next() {
+    this.navigateService.navigateToLocal(FlightsBookingRoute.StepThree)
   }
 
 }
