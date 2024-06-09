@@ -33,3 +33,12 @@ body {
 .mt-16 {
     margin-top: 16px;
 }
+
+.column {
+    display: flex;
+    flex-direction: column;
+}
+
+.row {
+    display: flex;
+}

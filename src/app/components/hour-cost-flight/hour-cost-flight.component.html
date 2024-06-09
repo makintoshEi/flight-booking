@@ -1,0 +1,26 @@
+<div class="hour-cost">
+    <div class="column">
+        <span class="hour-typography">{{takeOffHour()}}</span>
+        <span class="iata-typography">{{originIata()}}</span>
+    </div>
+    <div class="row">
+        <div class="column">
+            <span class="hour-typography">{{checkInHour()}}</span>
+            <span class="iata-typography">{{destinyIata()}}</span>
+        </div>
+        <div class="hour-cost__operator column center">
+            <span class="by">Operado por</span>
+            <img
+                alt="logo operadora"
+                src="assets/avianca-logo.svg"
+            >
+        </div>
+        <div class="column price-currency">
+            <span class="from">Desde</span>
+            <div class="row center">
+                <span class="hour-cost__iata mr-8 from">USD</span>
+                <span class="hour-typography">{{flightCost() | currency:'USD':''}}</span>
+            </div>
+        </div>
+    </div>
+</div>
