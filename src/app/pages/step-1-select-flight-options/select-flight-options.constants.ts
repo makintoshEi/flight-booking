@@ -11,23 +11,23 @@ export const SFCONSTANT = {
     OPTIONS: [
         {
             key: 'UIO',
-            value: 'Aereopuerto Internacional Mariscal Sucre, Quito'
+            value: 'Quito (Ecuador)'
         },
         {
             key: 'GYE',
-            value: 'Aereopuerto Internacional José Joaquin de Olmedo, Guayaquil'
+            value: 'Guayaquil (Ecuador)'
         },
         {
             key: 'PUJ',
-            value: 'Aereopuerto Internacional de Punta Cana, República Dominicana'
+            value: 'Punta Cana (Dominicana)'
         },
         {
             key: 'DPS',
-            value: 'Aeropuerto Internacional de Ngurah Rai, Indonesia'
+            value: 'Ngurah Rai (Indonesia)'
         },
         {
             key: 'AUA',
-            value: 'Aeropuerto Reina Beatriz, Aruba'
+            value: 'Aruba (Aruba)'
         },
     ]
 }
