@@ -5,27 +5,27 @@ import { CountryType, FlightBookingType, FlightInfoType } from "../types/flight-
     providedIn: 'root'
 })
 export class FlightBookingService {
-    flightBookingForm: FlightBookingType = this.getCleanContext()
+    flightBookingForm: FlightBookingType = this._getCleanContext()
 
     resetContext() {
-        this.flightBookingForm = this.getCleanContext()
+        this.flightBookingForm = this._getCleanContext()
     }
 
-    getCleanContext(): FlightBookingType {
+    private _getCleanContext(): FlightBookingType {
         return {
             departDay: null,
-            destiny: this.getCleanCountryContext(),
-            departFlightInfo: this.getCleanFlightInfoContext(),
-            origin: this.getCleanCountryContext(),
+            destiny: this._getCleanCountryContext(),
+            departFlightInfo: this._getCleanFlightInfoContext(),
+            origin: this._getCleanCountryContext(),
             passengersNumber: '0',
             returnDate: null,
-            returnFlightInfo: this.getCleanFlightInfoContext(),
+            returnFlightInfo: this._getCleanFlightInfoContext(),
             tripWay: 'roundtrip',
             withLuggage: false
         }
     }
 
-    getCleanFlightInfoContext(): FlightInfoType {
+    private _getCleanFlightInfoContext(): FlightInfoType {
         return {
             arrivedHour: '',
             destinyIata: '',
@@ -38,7 +38,7 @@ export class FlightBookingService {
         }
     }
 
-    getCleanCountryContext(): CountryType {
+    private _getCleanCountryContext(): CountryType {
         return {
             key: '',
             value: ''
