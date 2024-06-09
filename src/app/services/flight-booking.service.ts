@@ -19,6 +19,10 @@ export class FlightBookingService {
             origin: this._getCleanCountryContext(),
             passengersNumber: '0',
             passengers: [],
+            principal: {
+                email: '',
+                phoneNumber: ''
+            },
             returnDate: null,
             returnFlightInfo: this._getCleanFlightInfoContext(),
             tripWay: 'roundtrip'
