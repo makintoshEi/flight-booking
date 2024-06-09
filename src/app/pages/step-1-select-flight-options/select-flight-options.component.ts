@@ -84,7 +84,10 @@ export class SelectFlightOptionsComponent implements OnInit {
   }
 
   private _filter(value: string, options: CountryType[]): CountryType[] {
-    return options.filter(option => option.value.toLowerCase().includes(value.toLowerCase()))
+    if (typeof value === 'string') {
+      return options.filter(option => option.value.toLowerCase().includes(value.toLowerCase()))
+    }
+    return []
   }
 
   private _getFormValues(controlName: string): any {
@@ -92,7 +95,7 @@ export class SelectFlightOptionsComponent implements OnInit {
   }
 
   displayFn(option: CountryType): string {
-    return `${option.value}, ${option.key}`
+    return option ? `${option.value}, ${option.key}` : ''
   }
 
   next() {
