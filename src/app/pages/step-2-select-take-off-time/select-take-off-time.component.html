@@ -1,13 +1,46 @@
-<div class="take-off">
-    @for(option of hourCostArr; track option.id) {
-        <fb-hour-cost-flight 
-        [arrivedHour]="option.arrivedHour" 
-        [destinyIata]="option.destinyIata"
-        [durationTime]="option.durationTime"
-        [flightCost]="option.flightCost"
-        [operator]="option.operator"
-        [originIata]="option.originIata"
-        [takeOffHour]="option.takeOffHour"
-        (selectFlightEvent)="handleFlightSelection(option)"></fb-hour-cost-flight>
+<div class="take-off mt-16">
+    <div class="row center">
+        <mat-icon
+            aria-hidden="false"
+            aria-label="Ida"
+            fontIcon="flight_takeoff"
+        ></mat-icon>
+        <span class="route-text ml-8">Ida: {{fbService.flightBookingForm.origin}} a {{fbService.flightBookingForm.destiny}}</span>
+    </div>
+    @for(option of fromOriginFlights; track option.id) {
+        <div class="mt-16">
+            <fb-hour-cost-flight 
+            [arrivedHour]="option.arrivedHour" 
+            [destinyIata]="option.destinyIata"
+            [durationTime]="option.durationTime"
+            [flightCost]="option.flightCost"
+            [operator]="option.operator"
+            [originIata]="option.originIata"
+            [takeOffHour]="option.takeOffHour"
+            (selectFlightEvent)="onDepartFlightSelected(option)"></fb-hour-cost-flight>
+        </div>
     }
+    @if (showReturnSection && fbService.flightBookingForm.tripWay === 'roundtrip'){
+        <div class="row center mt-16">
+            <mat-icon
+                aria-hidden="false"
+                aria-label="Vuelta"
+                fontIcon="flight_land"
+            ></mat-icon>
+            <span class="route-text ml-8">Vuelta: {{fbService.flightBookingForm.destiny}} a {{fbService.flightBookingForm.origin}}</span>
+        </div>
+        @for(option of fromDestinyFlights; track option.id) {
+            <div class="mt-16">
+                <fb-hour-cost-flight 
+                [arrivedHour]="option.arrivedHour" 
+                [destinyIata]="option.destinyIata"
+                [durationTime]="option.durationTime"
+                [flightCost]="option.flightCost"
+                [operator]="option.operator"
+                [originIata]="option.originIata"
+                [takeOffHour]="option.takeOffHour"
+                (selectFlightEvent)="onDepartFlightSelected(option)"></fb-hour-cost-flight>
+            </div>
+        }
+      }
 </div>

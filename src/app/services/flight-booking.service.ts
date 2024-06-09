@@ -1,12 +1,11 @@
 import { Injectable } from "@angular/core";
-import { FlightBookingType } from "../types/flight-booking.type";
-import { BehaviorSubject, Subject } from "rxjs";
+import { FlightBookingType, FlightInfoType } from "../types/flight-booking.type";
 
 @Injectable({
     providedIn: 'root'
 })
 export class FlightBookingService {
-    flightBookingForm: FlightBookingType = this.getCleanContext()
+    flightBookingForm: Partial<FlightBookingType> = this.getCleanContext()
 
     resetContext() {
         this.flightBookingForm = this.getCleanContext()
@@ -16,11 +15,26 @@ export class FlightBookingService {
         return {
             departDay: null,
             destiny: '',
+            departFlightInfo: this.getCleanFlightInfoContext(),
             origin: '',
             passengersNumber: '0',
             returnDate: null,
+            returnFlightInfo: this.getCleanFlightInfoContext(),
             tripWay: 'roundtrip',
             withLuggage: false
+        }
+    }
+
+    getCleanFlightInfoContext(): FlightInfoType {
+        return {
+            arrivedHour: '',
+            destinyIata: '',
+            durationTime: '',
+            flightCost: '',
+            id: '',
+            operator: '',
+            originIata: '',
+            takeOffHour: '',
         }
     }
 }

@@ -3,6 +3,8 @@ type TripWay = 'oneway' | 'roundtrip'
 type FlightBookingType = {
     departDay: Date | null;
     destiny: string;
+    departFlightInfo: FlightInfoType;
+    returnFlightInfo: FlightInfoType;
     origin: string;
     passengersNumber: string;
     returnDate: Date | null;
@@ -15,7 +17,7 @@ type FlightInfoType = {
     destinyIata: string;
     durationTime: string;
     id: string;
-    operator: 'avianca' | 'jetsmart'
+    operator: 'avianca' | 'jetsmart' | ''
     originIata: string;
     takeOffHour: string;
     flightCost: string;
