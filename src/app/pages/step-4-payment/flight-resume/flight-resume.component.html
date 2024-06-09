@@ -1,0 +1,15 @@
+<div class="row center">
+    <mat-icon
+        aria-hidden="false"
+        [ariaLabel]="flightType()"
+        [fontIcon]="flightType() === 'Ida' ? 'flight_takeoff' : 'flight_land'"
+    ></mat-icon>
+    <span class="route-text ml-8">
+        {{flightType()}}: {{origin()}} a {{destiny()}}
+    </span>
+</div>
+<span>{{flightDate() | date:'longDate'}}</span>
+<div class="row">
+    <span>{{takeOffHour()}}</span>
+    <span>{{arrivedHour()}}</span>
+</div>

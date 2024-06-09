@@ -7,5 +7,6 @@ export const FlightsBookingRoute = {
 
 export const FlightBookingAPI = {
     cityAndAirport: '/city-and-airport',
-    flightSearch: '/flight-search'
+    flightSearch: '/flight-search',
+    flightConfirmation: '/flight-confirmation'
 }

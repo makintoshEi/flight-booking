@@ -47,7 +47,11 @@ type FlightSearchResponse = {
     flights: FlightInfoType[]
 }
 
+type FlightConfirmationResponse = {
+    totalAmount: number;
+}
+
 export {
-    CountryType, FlightBookingType, FlightInfoType,
+    CountryType, FlightBookingType, FlightConfirmationResponse, FlightInfoType,
     FlightSearchResponse, PassengerType, TripWay
 }
