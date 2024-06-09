@@ -4,6 +4,7 @@ import { FlightBookingService } from '../../services/flight-booking.service';
 import { PersonInfoComponent } from './person-info/person-info.component'
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { PICONSTANT } from './person-info/person-info.constants';
+import { MatButtonModule } from '@angular/material/button'
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FlightsBookingRoute } from '../../app.constants';
@@ -11,7 +12,7 @@ import { FlightsBookingRoute } from '../../app.constants';
 @Component({
   selector: 'app-passenger-info',
   standalone: true,
-  imports: [MatFormFieldModule, MatInputModule, PersonInfoComponent, ReactiveFormsModule],
+  imports: [MatButtonModule, MatFormFieldModule, MatInputModule, PersonInfoComponent, ReactiveFormsModule],
   templateUrl: './passenger-info.component.html',
   styleUrl: './passenger-info.component.scss'
 })
@@ -36,7 +37,7 @@ export class PassengerInfoComponent implements OnInit {
       [PICONSTANT.FORM.EMAIL]: new FormControl(null, [Validators.required, Validators.email]),
       [PICONSTANT.FORM.PHONENUMBER]: new FormControl(null, [Validators.required, Validators.pattern(/^(?:[+\d].*\d|\d)$/)]),
     })
-    for (let i = 0; i < 2; i++) {
+    for (let i = 0; i < +this.fbService.flightBookingForm.passengersNumber; i++) {
       this.passengerForms.push(this.getFormGroup())
     }
   }
