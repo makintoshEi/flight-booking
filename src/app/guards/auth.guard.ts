@@ -1,7 +1,7 @@
 import { Injectable, inject } from "@angular/core";
 import { ActivatedRouteSnapshot, CanActivateFn, RouterStateSnapshot } from "@angular/router";
 import { AuthService, NavigationService } from "../services/";
-import { BookFlightRoute } from "../app.constants";
+import { FlightsBookingRoute } from "../app.constants";
 
 @Injectable({ providedIn: 'root' })
 export class AuthCanActivateGuard {
@@ -13,7 +13,7 @@ export class AuthCanActivateGuard {
         if (this.authService.isAuthenticated.getValue()) {
             return true
         } else {
-            this.navigationService.navigateToLocal(BookFlightRoute.Init)
+            this.navigationService.navigateToLocal(FlightsBookingRoute.StepOne)
             return false
         }
     }

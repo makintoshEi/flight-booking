@@ -4,6 +4,7 @@ import { NavigationService } from '../../services';
 import { HourCostFlightComponent } from '../../components/hour-cost-flight/hour-cost-flight.component'
 import { FlightInfoType } from '../../types/flight-booking.type';
 import { MatIconModule } from '@angular/material/icon';
+import { FlightsBookingRoute } from '../../app.constants';
 
 @Component({
   selector: 'app-select-take-off-time',
@@ -128,8 +129,13 @@ export class SelectTakeOffTimeComponent {
 
   onDepartFlightSelected(flightSelected: FlightInfoType) {
     this.fbService.flightBookingForm.departFlightInfo = flightSelected
-    // call API
-    setTimeout(() => this.showReturnSection = true, 1000)
+    if (this.fbService.flightBookingForm.tripWay === 'roundtrip') {
+      // call API
+      setTimeout(() => this.showReturnSection = true, 1000)
+    } else {
+      this.navigateService.navigateToLocal(FlightsBookingRoute.StepThree)
+    }
+
   }
 
 }

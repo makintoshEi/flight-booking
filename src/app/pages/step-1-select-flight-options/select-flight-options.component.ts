@@ -14,7 +14,7 @@ import { SFCONSTANT } from './select-flight-options.constants';
 import { OptionType } from './types/select-flight.type';
 import { TripWay } from '../../types/flight-booking.type'
 import { NavigationService } from '../../services';
-import { BookFlightRoute } from '../../app.constants';
+import { FlightsBookingRoute } from '../../app.constants';
 import { FlightBookingService } from '../../services/flight-booking.service';
 
 @Component({
@@ -101,7 +101,7 @@ export class SelectFlightOptionsComponent implements OnInit {
       tripWay: this._getFormValues(this.formControlNames.tripWay),
       withLuggage: this._getFormValues(this.formControlNames.withLugagge),
     }
-    this.navigationService.navigateToLocal(BookFlightRoute.TakeOff)
+    this.navigationService.navigateToLocal(FlightsBookingRoute.StepTwo)
   }
 
 

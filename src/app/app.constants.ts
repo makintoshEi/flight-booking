@@ -1,6 +1,6 @@
-export const BookFlightRoute = {
-    Init: 'flight-options',
-    TakeOff: 'take-off',
-    PassengerInfo: 'passenger-info',
-    Payment: 'payment'
+export const FlightsBookingRoute = {
+    StepOne: 'flight-options',
+    StepTwo: 'take-off',
+    StepThree: 'passenger-info',
+    StepFour: 'payment'
 }
