@@ -28,6 +28,10 @@ type FlightInfoType = {
     flightCost: string;
 }
 
+type FlightSearchResponse = {
+    flights: FlightInfoType[]
+}
+
 export {
-    CountryType, FlightBookingType, FlightInfoType, TripWay
+    CountryType, FlightBookingType, FlightInfoType, FlightSearchResponse, TripWay
 }

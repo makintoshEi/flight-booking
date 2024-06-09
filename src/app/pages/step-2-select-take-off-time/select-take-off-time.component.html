@@ -7,17 +7,17 @@
         ></mat-icon>
         <span class="route-text ml-8">Ida: {{fbService.flightBookingForm.origin.value}} a {{fbService.flightBookingForm.destiny.value}}</span>
     </div>
-    @for(option of fromOriginFlights; track option.id) {
+    @for(flight of originFlights; track flight.id) {
         <div class="mt-16">
             <fb-hour-cost-flight 
-            [arrivedHour]="option.arrivedHour" 
-            [destinyIata]="option.destinyIata"
-            [durationTime]="option.durationTime"
-            [flightCost]="option.flightCost"
-            [operator]="option.operator"
-            [originIata]="option.originIata"
-            [takeOffHour]="option.takeOffHour"
-            (selectFlightEvent)="onDepartFlightSelected(option)"></fb-hour-cost-flight>
+            [arrivedHour]="flight.arrivedHour" 
+            [destinyIata]="flight.destinyIata"
+            [durationTime]="flight.durationTime"
+            [flightCost]="flight.flightCost"
+            [operator]="flight.operator"
+            [originIata]="flight.originIata"
+            [takeOffHour]="flight.takeOffHour"
+            (selectFlightEvent)="onDepartFlightSelected(flight)"></fb-hour-cost-flight>
         </div>
     }
     @if (showReturnSection && fbService.flightBookingForm.tripWay === 'roundtrip'){
@@ -29,17 +29,17 @@
             ></mat-icon>
             <span class="route-text ml-8">Vuelta: {{fbService.flightBookingForm.destiny.value}} a {{fbService.flightBookingForm.origin.value}}</span>
         </div>
-        @for(option of fromDestinyFlights; track option.id) {
+        @for(flight of returnFlights; track flight.id) {
             <div class="mt-16">
                 <fb-hour-cost-flight 
-                [arrivedHour]="option.arrivedHour" 
-                [destinyIata]="option.destinyIata"
-                [durationTime]="option.durationTime"
-                [flightCost]="option.flightCost"
-                [operator]="option.operator"
-                [originIata]="option.originIata"
-                [takeOffHour]="option.takeOffHour"
-                (selectFlightEvent)="onReturnFlightSelected(option)"></fb-hour-cost-flight>
+                [arrivedHour]="flight.arrivedHour" 
+                [destinyIata]="flight.destinyIata"
+                [durationTime]="flight.durationTime"
+                [flightCost]="flight.flightCost"
+                [operator]="flight.operator"
+                [originIata]="flight.originIata"
+                [takeOffHour]="flight.takeOffHour"
+                (selectFlightEvent)="onReturnFlightSelected(flight)"></fb-hour-cost-flight>
             </div>
         }
       }

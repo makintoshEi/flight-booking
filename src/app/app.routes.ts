@@ -33,6 +33,6 @@ export const routes: Routes = [
     },
     {
         path: '**',
-        redirectTo: FlightsBookingRoute.StepTwo
+        redirectTo: FlightsBookingRoute.StepOne
     }
 ];

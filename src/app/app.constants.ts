@@ -6,5 +6,6 @@ export const FlightsBookingRoute = {
 }
 
 export const FlightBookingAPI = {
-    cityAndAirport: 'http://localhost:5000/city-and-airport',
+    cityAndAirport: '/city-and-airport',
+    flightSearch: '/flight-search'
 }

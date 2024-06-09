@@ -132,7 +132,4 @@ export class SelectFlightOptionsComponent implements OnInit {
     }
     this.navigationService.navigateToLocal(FlightsBookingRoute.StepTwo)
   }
-
-
-
 }
