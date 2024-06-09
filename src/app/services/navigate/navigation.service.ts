@@ -10,4 +10,8 @@ export class NavigationService {
         this.router.navigate([url])
     }
 
+    goBack() {
+        this.router.navigate(['...'])
+    }
+
 }

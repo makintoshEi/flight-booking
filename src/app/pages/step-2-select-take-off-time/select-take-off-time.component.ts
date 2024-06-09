@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FlightBookingService } from '../../services/flight-booking.service';
+import { NavigationService } from '../../services';
 
 @Component({
   selector: 'app-select-take-off-time',
@@ -8,5 +10,9 @@ import { Component } from '@angular/core';
   styleUrl: './select-take-off-time.component.scss'
 })
 export class SelectTakeOffTimeComponent {
+
+  constructor(private navigateService: NavigationService,
+    private flightBookingService: FlightBookingService) {
+  }
 
 }

@@ -72,7 +72,8 @@
                     class="select-flight__full-width" 
                     mat-flat-button 
                     color="primary"
-                    [disabled]="selectFlightForm.status === 'INVALID'">Buscar</button>
+                    [disabled]="selectFlightForm.status === 'INVALID'"
+                    (click)="next()">Buscar</button>
             </div>
         </div>
         
