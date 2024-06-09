@@ -14,8 +14,9 @@ import { SFCONSTANT } from './select-flight-options.constants';
 import { CountryType } from '../../types/flight-booking.type';
 import { TripWay } from '../../types/flight-booking.type'
 import { NavigationService } from '../../services';
-import { FlightsBookingRoute } from '../../app.constants';
+import { FlightBookingAPI, FlightsBookingRoute } from '../../app.constants';
 import { FlightBookingService } from '../../services/flight-booking.service';
+import { QueryService } from '../../services/query/query.service';
 
 @Component({
   selector: 'app-select-flight-options',
@@ -38,17 +39,25 @@ export class SelectFlightOptionsComponent implements OnInit {
 
   formControlNames = SFCONSTANT.FORM
   selectFlightForm!: FormGroup;
-  originOptions = [...SFCONSTANT.OPTIONS]
-  destinyOptions = [...SFCONSTANT.OPTIONS]
+  originCities: CountryType[] = []
+  destinyCities: CountryType[] = []
   filteredOriginOptions!: Observable<CountryType[]> | undefined;
   filteredDestinyOptions!: Observable<CountryType[]> | undefined;
   tripWaySelected: TripWay = 'roundtrip'
   today = new Date()
   withLuggage = false
 
-  constructor(private navigationService: NavigationService, private flightBookingService: FlightBookingService) { }
+  constructor(
+    private navigationService: NavigationService,
+    private flightBookingService: FlightBookingService,
+    private queryService: QueryService) { }
 
   ngOnInit() {
+    this.buildForm()
+    this.getCitiesAndAirports()
+  }
+
+  buildForm() {
     this.selectFlightForm = new FormGroup({
       [this.formControlNames.tripWay]: new FormControl(this.tripWaySelected, Validators.required),
       [this.formControlNames.origin]: new FormControl(null, Validators.required),
@@ -67,19 +76,32 @@ export class SelectFlightOptionsComponent implements OnInit {
         }
       }
     })
-    this.optionsFilter()
+  }
+
+  getCitiesAndAirports() {
+    this.queryService.get<CountryType[]>(FlightBookingAPI.cityAndAirport)
+      .subscribe({
+        next: (response) => {
+          this.originCities = [...response]
+          this.destinyCities = [...response]
+          this.optionsFilter()
+        },
+        error: (err) => {
+          console.error(err)
+        }
+      })
   }
 
   optionsFilter() {
     this.filteredOriginOptions = this.selectFlightForm.get(this.formControlNames.origin)
       ?.valueChanges.pipe(
         startWith(''),
-        map(value => this._filter(value || '', this.originOptions)),
+        map(value => this._filter(value || '', this.originCities)),
       );
     this.filteredDestinyOptions = this.selectFlightForm.get(this.formControlNames.destiny)
       ?.valueChanges.pipe(
         startWith(''),
-        map(value => this._filter(value || '', this.destinyOptions)),
+        map(value => this._filter(value || '', this.destinyCities)),
       );
   }
 
