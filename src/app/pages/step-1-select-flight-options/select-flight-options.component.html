@@ -40,7 +40,7 @@
                         [matAutocomplete]="autoDestiny">
                         <mat-autocomplete #autoDestiny="matAutocomplete">
                             @for (option of filteredDestinyOptions | async; track option.key) {
-                            <mat-option [value]="option.key">{{option.value}}</mat-option>
+                            <mat-option [value]="option.value">{{option.value + ', '+option.key}}</mat-option>
                             }
                         </mat-autocomplete>
                 </mat-form-field>
