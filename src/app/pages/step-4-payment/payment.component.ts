@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CurrencyPipe } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button'
 import { FlightBookingService } from '../../services/flight-booking.service';
 import { QueryService } from '../../services/query/query.service';
 import { FlightBookingType, FlightConfirmationResponse } from '../../types/flight-booking.type';
@@ -11,7 +12,7 @@ import { NavigationService } from '../../services';
 @Component({
   selector: 'app-payment',
   standalone: true,
-  imports: [CurrencyPipe, FlightResumeComponent, MatIconModule],
+  imports: [CurrencyPipe, FlightResumeComponent, MatButtonModule, MatIconModule],
   templateUrl: './payment.component.html',
   styleUrl: './payment.component.scss'
 })
@@ -27,7 +28,6 @@ export class PaymentComponent implements OnInit {
 
   ngOnInit() {
     this.flightData = this.fbService.flightBookingForm;
-    console.log(':: flight data :: ', this.flightData)
     this.flightCheck()
   }
 

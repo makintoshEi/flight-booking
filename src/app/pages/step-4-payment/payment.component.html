@@ -40,5 +40,19 @@
                 <span class="money-typography ml-8">{{totalAmount | currency:'USD':''}}</span>
             </div>
         </div>
+        <div class="row mt-16">
+            <button 
+                class="full-width button" 
+                mat-stroked-button 
+                color="primary"
+                (click)="doPayment()">
+                <mat-icon><img
+                    width="20px"
+                    height="20px"
+                    alt="Paga con paypal"
+                    src="assets/paypal-logo.svg"
+                ></mat-icon>
+                Pagar con paypal</button>
+        </div>
     </div>
 </section>
