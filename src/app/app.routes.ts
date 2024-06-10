@@ -29,7 +29,7 @@ export const routes: Routes = [
         path: FlightsBookingRoute.StepFour,
         loadComponent: () => import('./pages/step-4-payment/payment.component')
             .then(m => m.PaymentComponent),
-        // canActivate: [isAuthGuard]
+        canActivate: [isAuthGuard]
     },
     {
         path: '**',

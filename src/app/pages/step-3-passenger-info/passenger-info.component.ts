@@ -65,6 +65,7 @@ export class PassengerInfoComponent implements OnInit {
   }
 
   setPassengersData() {
+    this.fbService.flightBookingForm.passengers = []
     this.passengerForms.forEach(form => {
       this.fbService.flightBookingForm.passengers?.push({
         birthDate: form.get(PICONSTANT.FORM.BIRTHDATE)?.value,
