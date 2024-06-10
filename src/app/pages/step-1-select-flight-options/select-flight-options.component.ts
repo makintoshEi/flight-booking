@@ -75,6 +75,16 @@ export class SelectFlightOptionsComponent implements OnInit {
         }
       }
     })
+
+    this.selectFlightForm.get(this.formControlNames.origin)?.valueChanges
+      .subscribe({
+        next: (value: CountryType) => {
+          this.selectFlightForm.get(this.formControlNames.destiny)?.setValue(null)
+          let copyDestinyCities = [...this.destinyCities]
+          copyDestinyCities = [...copyDestinyCities.filter(city => city.key !== value.key)]
+          this.optionsFilter(this.originCities, copyDestinyCities)
+        }
+      })
   }
 
   getCitiesAndAirports() {
@@ -83,7 +93,7 @@ export class SelectFlightOptionsComponent implements OnInit {
         next: (response) => {
           this.originCities = [...response]
           this.destinyCities = [...response]
-          this.optionsFilter()
+          this.optionsFilter(this.originCities, this.destinyCities)
         },
         error: (err) => {
           console.error(err)
@@ -91,16 +101,16 @@ export class SelectFlightOptionsComponent implements OnInit {
       })
   }
 
-  optionsFilter() {
+  optionsFilter(originCities: CountryType[], destinyCities: CountryType[]) {
     this.filteredOriginOptions = this.selectFlightForm.get(this.formControlNames.origin)
       ?.valueChanges.pipe(
         startWith(''),
-        map(value => this._filter(value || '', this.originCities)),
+        map(value => this._filter(value || '', originCities)),
       );
     this.filteredDestinyOptions = this.selectFlightForm.get(this.formControlNames.destiny)
       ?.valueChanges.pipe(
         startWith(''),
-        map(value => this._filter(value || '', this.destinyCities)),
+        map(value => this._filter(value || '', destinyCities)),
       );
   }
 
