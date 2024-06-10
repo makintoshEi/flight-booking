@@ -1,15 +1,29 @@
-<div class="row center">
-    <mat-icon
-        aria-hidden="false"
-        [ariaLabel]="flightType()"
-        [fontIcon]="flightType() === 'Ida' ? 'flight_takeoff' : 'flight_land'"
-    ></mat-icon>
-    <span class="route-text ml-8">
-        {{flightType()}}: {{origin()}} a {{destiny()}}
-    </span>
-</div>
-<span>{{flightDate() | date:'longDate'}}</span>
-<div class="row">
-    <span>{{takeOffHour()}}</span>
-    <span>{{arrivedHour()}}</span>
-</div>
+<section class="flight-resume">
+    <div class="row center space-between">
+        <div>
+            <mat-icon
+                aria-hidden="false"
+                [ariaLabel]="flightType()"
+                [fontIcon]="flightType() === 'Ida' ? 'flight_takeoff' : 'flight_land'"
+            ></mat-icon>
+            <span class="normal-typography fw-500 ml-8">
+                {{flightType()}}: {{origin()}} a {{destiny()}}
+            </span>
+        </div>
+
+        <img
+            width="80px"
+            height="40px"
+            [alt]="operator()"
+            [src]="'assets/'+operator()+'.svg'"
+        >
+
+    </div>
+    <div class="normal-typography fw-400 mt-8">
+        <span>{{flightDate() | date:'longDate'}}</span>
+    </div>
+    <div class="row space-between mt-8">
+        <span class="hour-typography">{{takeOffHour()}}</span>
+        <span class="hour-typography">{{arrivedHour()}}</span>
+    </div>
+</section>
