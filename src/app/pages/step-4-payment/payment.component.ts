@@ -1,18 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { CurrencyPipe } from '@angular/common';
-import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button'
+import { MatIconModule } from '@angular/material/icon';
 import { FlightBookingService } from '../../services/flight-booking.service';
+import { ResumeComponent } from './resume/resume.component'
 import { QueryService } from '../../services/query/query.service';
-import { FlightBookingType, FlightConfirmationResponse } from '../../types/flight-booking.type';
-import { FlightResumeComponent } from './flight-resume/flight-resume.component';
-import { FlightBookingAPI, FlightsBookingRoute } from '../../app.constants';
 import { NavigationService } from '../../services';
+import { FlightBookingType, FlightConfirmationResponse } from '../../types/flight-booking.type';
+import { FlightBookingAPI, FlightsBookingRoute } from '../../app.constants';
 
 @Component({
   selector: 'app-payment',
   standalone: true,
-  imports: [CurrencyPipe, FlightResumeComponent, MatButtonModule, MatIconModule],
+  imports: [MatButtonModule, MatIconModule, ResumeComponent],
   templateUrl: './payment.component.html',
   styleUrl: './payment.component.scss'
 })

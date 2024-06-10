@@ -5,13 +5,13 @@ import { CountryType, FlightBookingType, FlightInfoType } from "../types/flight-
     providedIn: 'root'
 })
 export class FlightBookingService {
-    flightBookingForm: FlightBookingType = this._getCleanContext()
+    flightBookingForm: FlightBookingType = this.getCleanContext()
 
     resetContext() {
-        this.flightBookingForm = this._getCleanContext()
+        this.flightBookingForm = this.getCleanContext()
     }
 
-    private _getCleanContext(): FlightBookingType {
+    getCleanContext(): FlightBookingType {
         return {
             departDay: null,
             destiny: this._getCleanCountryContext(),
