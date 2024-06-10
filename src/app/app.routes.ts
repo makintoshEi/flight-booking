@@ -23,13 +23,13 @@ export const routes: Routes = [
         path: FlightsBookingRoute.StepThree,
         loadComponent: () => import('./pages/step-3-passenger-info/passenger-info.component')
             .then(m => m.PassengerInfoComponent),
-        // canActivate: [isAuthGuard]
+        canActivate: [isAuthGuard]
     },
     {
         path: FlightsBookingRoute.StepFour,
         loadComponent: () => import('./pages/step-4-payment/payment.component')
             .then(m => m.PaymentComponent),
-        canActivate: [isAuthGuard]
+        // canActivate: [isAuthGuard]
     },
     {
         path: '**',

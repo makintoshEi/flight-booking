@@ -51,7 +51,12 @@ type FlightConfirmationResponse = {
     totalAmount: number;
 }
 
+type FlightBookingResponse = {
+    bookingStatus: 'success' | 'error';
+    message: string;
+}
+
 export {
-    CountryType, FlightBookingType, FlightConfirmationResponse, FlightInfoType,
+    CountryType, FlightBookingType, FlightBookingResponse, FlightConfirmationResponse, FlightInfoType,
     FlightSearchResponse, PassengerType, TripWay
 }

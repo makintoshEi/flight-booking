@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button'
 import { MatIconModule } from '@angular/material/icon';
+import { MatDialog } from '@angular/material/dialog';
 import { FlightBookingService } from '../../services/flight-booking.service';
 import { ResumeComponent } from './resume/resume.component'
 import { QueryService } from '../../services/query/query.service';
 import { NavigationService } from '../../services';
-import { FlightBookingType, FlightConfirmationResponse } from '../../types/flight-booking.type';
+import { FlightBookingResponse, FlightBookingType, FlightConfirmationResponse } from '../../types/flight-booking.type';
 import { FlightBookingAPI, FlightsBookingRoute } from '../../app.constants';
+import { DialogInformationComponent } from '../../components/dialog-information/dialog-information.component'
 
 @Component({
   selector: 'app-payment',
@@ -22,7 +24,8 @@ export class PaymentComponent implements OnInit {
   constructor(
     protected fbService: FlightBookingService,
     private navigateService: NavigationService,
-    private queryService: QueryService
+    private queryService: QueryService,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit() {
@@ -40,7 +43,24 @@ export class PaymentComponent implements OnInit {
   }
 
   doPayment() {
-    this.fbService.resetContext();
-    this.navigateService.navigateToLocal(FlightsBookingRoute.StepOne);
+    this.queryService.post<FlightBookingResponse>(FlightBookingAPI.booking, this.flightData)
+      .subscribe({
+        next: (response) => {
+          if (response.bookingStatus === 'success') {
+            const dialogRef = this.dialog.open(DialogInformationComponent, {
+              data: {
+                message: response.message,
+              }
+            });
+            dialogRef.afterClosed().subscribe(() => {
+              this.fbService.resetContext();
+              this.navigateService.navigateToLocal(FlightsBookingRoute.StepOne);
+            });
+          }
+        },
+        error: (err) => {
+          console.error(err)
+        }
+      })
   }
 }
