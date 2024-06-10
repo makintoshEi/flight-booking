@@ -11,7 +11,7 @@ type FlightBookingType = {
     departFlightInfo?: FlightInfoType;
     returnFlightInfo?: FlightInfoType;
     origin: CountryType;
-    passengersNumber: string;
+    passengersNumber: number;
     passengers?: PassengerType[];
     principal?: PrincipalType;
     returnDate: Date | null;

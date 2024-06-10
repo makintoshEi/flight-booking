@@ -17,7 +17,7 @@ export class FlightBookingService {
             destiny: this._getCleanCountryContext(),
             departFlightInfo: this._getCleanFlightInfoContext(),
             origin: this._getCleanCountryContext(),
-            passengersNumber: '0',
+            passengersNumber: 0,
             passengers: [],
             principal: {
                 email: '',
