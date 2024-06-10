@@ -23,7 +23,5 @@ import { MatButtonModule } from '@angular/material/button'
   styleUrl: './dialog-information.component.scss'
 })
 export class DialogInformationComponent {
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any) { 
-    console.log('dialog module')
-  }
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any) { }
 }
