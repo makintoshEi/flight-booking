@@ -9,16 +9,20 @@ import { NavigationService } from '../../services';
 import { FlightBookingResponse, FlightBookingType, FlightConfirmationResponse } from '../../types/flight-booking.type';
 import { FlightBookingAPI, FlightsBookingRoute } from '../../app.constants';
 import { DialogInformationComponent } from '../../components/dialog-information/dialog-information.component'
+import { LoadingScreenComponent } from '../../components/loading-screen/loading-screen.component'
+import { ScreeStatusType } from '../../types/screen-status.type';
 
 @Component({
   selector: 'app-payment',
   standalone: true,
-  imports: [MatButtonModule, MatIconModule, ResumeComponent],
+  imports: [LoadingScreenComponent, MatButtonModule, MatIconModule, ResumeComponent],
   templateUrl: './payment.component.html',
   styleUrl: './payment.component.scss'
 })
 export class PaymentComponent implements OnInit {
+
   flightData!: FlightBookingType;
+  screenStatus: ScreeStatusType = 'loading'
   totalAmount = 0
 
   constructor(
@@ -38,11 +42,16 @@ export class PaymentComponent implements OnInit {
       .subscribe({
         next: (response) => {
           this.totalAmount = response.totalAmount;
-        }
+        },
+        error: (err) => {
+          console.log(err)
+        },
+        complete: () => this.screenStatus = 'normal'
       })
   }
 
   doPayment() {
+    this.screenStatus = 'loading'
     this.queryService.post<FlightBookingResponse>(FlightBookingAPI.booking, this.flightData)
       .subscribe({
         next: (response) => {

@@ -1,25 +1,30 @@
-<section class="payment">
-    <fb-resume
-        [flightData]="flightData"
-        [totalAmount]="totalAmount"
-    ></fb-resume>
-    <div class="row mt-16">
-        <button
-            class="full-width button"
-            mat-stroked-button
-            color="primary"
-            (click)="doPayment()"
-        >
-            <mat-icon>
-                <img
-                    width="20px"
-                    height="20px"
-                    alt="Paga con paypal"
-                    src="assets/paypal-logo.svg"
-                >
-            </mat-icon>
-            Pagar con paypal
-        </button>
-    </div>
-</section>
+@if (screenStatus === 'normal') {
+    <section class="payment">
+        <fb-resume
+            [flightData]="flightData"
+            [totalAmount]="totalAmount"
+        ></fb-resume>
+        <div class="row mt-16">
+            <button
+                class="full-width button"
+                mat-stroked-button
+                color="primary"
+                (click)="doPayment()"
+            >
+                <mat-icon>
+                    <img
+                        width="20px"
+                        height="20px"
+                        alt="Paga con paypal"
+                        src="assets/paypal-logo.svg"
+                    >
+                </mat-icon>
+                Pagar con paypal
+            </button>
+        </div>
+    </section>
+}
 
+@if (screenStatus === 'loading') {
+    <fb-loading-screen></fb-loading-screen>
+}

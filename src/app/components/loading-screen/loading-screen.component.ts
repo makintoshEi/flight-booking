@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
 
 @Component({
@@ -8,4 +8,6 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
   templateUrl: './loading-screen.component.html',
   styleUrl: './loading-screen.component.scss'
 })
-export class LoadingScreenComponent {}
+export class LoadingScreenComponent {
+  description = input('Cargando...')
+}
