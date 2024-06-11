@@ -23,6 +23,7 @@ export class PaymentComponent implements OnInit {
 
   flightData!: FlightBookingType;
   screenStatus: ScreeStatusType = 'loading'
+  screenStatusDescription = 'Cargando...'
   totalAmount = 0
 
   constructor(
@@ -52,24 +53,28 @@ export class PaymentComponent implements OnInit {
 
   doPayment() {
     this.screenStatus = 'loading'
-    this.queryService.post<FlightBookingResponse>(FlightBookingAPI.booking, this.flightData)
-      .subscribe({
-        next: (response) => {
-          if (response.bookingStatus === 'success') {
-            const dialogRef = this.dialog.open(DialogInformationComponent, {
-              data: {
-                message: response.message,
-              }
-            });
-            dialogRef.afterClosed().subscribe(() => {
-              this.fbService.resetContext();
-              this.navigateService.navigateToLocal(FlightsBookingRoute.StepOne);
-            });
-          }
-        },
-        error: (err) => {
-          console.error(err)
-        }
-      })
+    this.screenStatusDescription = 'Conectando con PayPal ...'
+    setTimeout(() => {
+      this.queryService.post<FlightBookingResponse>(FlightBookingAPI.booking, this.flightData)
+        .subscribe({
+          next: (response) => {
+            if (response.bookingStatus === 'success') {
+              const dialogRef = this.dialog.open(DialogInformationComponent, {
+                data: {
+                  message: response.message,
+                }
+              });
+              dialogRef.afterClosed().subscribe(() => {
+                this.fbService.resetContext();
+                this.navigateService.navigateToLocal(FlightsBookingRoute.StepOne);
+              });
+            }
+          },
+          error: (err) => {
+            console.error(err)
+          },
+          complete: () => this.screenStatus = 'normal'
+        })
+    }, 4000)
   }
 }
