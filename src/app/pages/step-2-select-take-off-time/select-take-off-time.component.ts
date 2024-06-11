@@ -7,11 +7,12 @@ import { MatIconModule } from '@angular/material/icon';
 import { FlightBookingAPI, FlightsBookingRoute } from '../../app.constants';
 import { QueryService } from '../../services/query/query.service';
 import { tap } from 'rxjs';
+import { HeaderComponent } from '../../components/header/header.component'
 
 @Component({
   selector: 'app-select-take-off-time',
   standalone: true,
-  imports: [HourCostFlightComponent, MatIconModule],
+  imports: [HeaderComponent, HourCostFlightComponent, MatIconModule],
   templateUrl: './select-take-off-time.component.html',
   styleUrl: './select-take-off-time.component.scss'
 })
@@ -73,6 +74,10 @@ export class SelectTakeOffTimeComponent implements OnInit {
 
   next() {
     this.navigateService.navigateToLocal(FlightsBookingRoute.StepThree)
+  }
+
+  back() {
+    this.navigateService.navigateToLocal('...')
   }
 
 }

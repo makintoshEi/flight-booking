@@ -23,7 +23,7 @@ export const routes: Routes = [
         path: FlightsBookingRoute.StepThree,
         loadComponent: () => import('./pages/step-3-passenger-info/passenger-info.component')
             .then(m => m.PassengerInfoComponent),
-        canActivate: [isAuthGuard]
+        // canActivate: [isAuthGuard]
     },
     {
         path: FlightsBookingRoute.StepFour,

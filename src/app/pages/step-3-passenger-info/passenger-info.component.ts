@@ -8,11 +8,12 @@ import { MatButtonModule } from '@angular/material/button'
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FlightsBookingRoute } from '../../app.constants';
+import { HeaderComponent } from '../../components/header/header.component'
 
 @Component({
   selector: 'app-passenger-info',
   standalone: true,
-  imports: [MatButtonModule, MatFormFieldModule, MatInputModule, PersonInfoComponent, ReactiveFormsModule],
+  imports: [HeaderComponent, MatButtonModule, MatFormFieldModule, MatInputModule, PersonInfoComponent, ReactiveFormsModule],
   templateUrl: './passenger-info.component.html',
   styleUrl: './passenger-info.component.scss'
 })
@@ -62,6 +63,10 @@ export class PassengerInfoComponent implements OnInit {
       this.setPassengersData()
       this.navigationService.navigateToLocal(FlightsBookingRoute.StepFour)
     }
+  }
+
+  back() {
+    this.navigationService.navigateToLocal('...');
   }
 
   setPassengersData() {
