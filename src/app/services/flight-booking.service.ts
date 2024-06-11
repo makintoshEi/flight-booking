@@ -37,6 +37,7 @@ export class FlightBookingService {
             durationTime: '',
             flightCost: '',
             id: '',
+            isSelected: false,
             operator: '',
             originIata: '',
             takeOffHour: '',

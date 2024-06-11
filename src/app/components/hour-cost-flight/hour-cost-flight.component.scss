@@ -13,7 +13,8 @@ $breakpoint-tablet: 61.9375rem;
     /* IE 10 and IE 11 */
     user-select: none;
     /* Standard syntax */
-
+    
+    &__selected,
     &:hover {
         border: 1px solid #ff4081;
         background-color: #ffe6ee;

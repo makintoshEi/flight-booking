@@ -1,5 +1,7 @@
 <div
-    class="hour-cost"
+    [ngClass]="{
+        'hour-cost': true, 
+        'hour-cost__selected': isSelected()}"
     (click)="selectFlight()"
     (keypress)="selectFlight()"
 >

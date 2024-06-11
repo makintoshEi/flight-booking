@@ -24,6 +24,7 @@ type FlightInfoType = {
     destinyIata: string;
     durationTime: string;
     id: string;
+    isSelected: boolean;
     operator: 'avianca' | 'jetsmart' | ''
     originIata: string;
     takeOffHour: string;

@@ -53,6 +53,8 @@ export class SelectTakeOffTimeComponent implements OnInit {
   }
 
   onDepartFlightSelected(flightSelected: FlightInfoType) {
+    this.resetSelectedFlights()
+    flightSelected.isSelected = true
     this.screenStatus = 'loading'
     this.fbService.flightBookingForm.departFlightInfo = flightSelected
     if (this.fbService.flightBookingForm.tripWay === 'roundtrip') {
@@ -85,6 +87,10 @@ export class SelectTakeOffTimeComponent implements OnInit {
 
   back() {
     this.navigateService.navigateToLocal('...')
+  }
+
+  resetSelectedFlights() {
+    this.originFlights.forEach(flight => flight.isSelected = false)
   }
 
 }
