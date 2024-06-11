@@ -1,9 +1,9 @@
 <section class="passenger-info">
     <fb-header title="Llenar información de pasajeros" (back)="back()"></fb-header>
     @for (form of passengerForms; track form;) {
-        <fb-person-info class="mt-16" [index]="$index" [personForm]="form"></fb-person-info>
+        <fb-person-info [index]="$index" [personForm]="form"></fb-person-info>
     }
-    <form class="mt-16" [formGroup]="principalForm">
+    <form class="passenger-info__principal mt-16" [formGroup]="principalForm">
         <h4>Titular de la Reserva</h4>
         <div class="row">
             <mat-form-field class="full-width">
