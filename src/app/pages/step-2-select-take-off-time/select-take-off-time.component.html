@@ -7,7 +7,7 @@
                 aria-label="Ida"
                 fontIcon="flight_takeoff"
             ></mat-icon>
-            <span class="route-text ml-8">Ida: {{fbService.flightBookingForm.origin.value}} a {{fbService.flightBookingForm.destiny.value}}</span>
+            <span class="route-text ml-8">Ida: {{fbService.flightBookingForm.origin.value}} a {{fbService.flightBookingForm.destiny.value}}, {{fbService.flightBookingForm.departDate | date:'longDate' }}</span>
         </div>
         @for(flight of originFlights; track flight.id) {
             <div class="mt-16">
@@ -29,7 +29,7 @@
                     aria-label="Vuelta"
                     fontIcon="flight_land"
                 ></mat-icon>
-                <span class="route-text ml-8">Vuelta: {{fbService.flightBookingForm.destiny.value}} a {{fbService.flightBookingForm.origin.value}}</span>
+                <span class="route-text ml-8">Vuelta: {{fbService.flightBookingForm.destiny.value}} a {{fbService.flightBookingForm.origin.value}}, {{fbService.flightBookingForm.returnDate | date:'longDate' }}</span>
             </div>
             @for(flight of returnFlights; track flight.id) {
                 <div class="mt-16">

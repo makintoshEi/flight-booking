@@ -13,12 +13,13 @@ export class FlightBookingService {
 
     getCleanContext(): FlightBookingType {
         return {
-            departDay: null,
+            departDate: null,
             destiny: this._getCleanCountryContext(),
             departFlightInfo: this._getCleanFlightInfoContext(),
             origin: this._getCleanCountryContext(),
             passengersNumber: 0,
             passengers: [],
+            paypalTransactionID: '',
             principal: {
                 email: '',
                 phoneNumber: ''

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { tap } from 'rxjs';
 import { FlightBookingService } from '../../services/flight-booking.service';
 import { NavigationService } from '../../services';
 import { HourCostFlightComponent } from '../../components/hour-cost-flight/hour-cost-flight.component'
@@ -6,15 +7,15 @@ import { FlightInfoType, FlightSearchResponse } from '../../types/flight-booking
 import { MatIconModule } from '@angular/material/icon';
 import { FlightBookingAPI, FlightsBookingRoute } from '../../app.constants';
 import { QueryService } from '../../services/query/query.service';
-import { tap } from 'rxjs';
 import { HeaderComponent } from '../../components/header/header.component'
 import { LoadingScreenComponent } from '../../components/loading-screen/loading-screen.component'
 import { ScreeStatusType } from '../../types/screen-status.type'
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-select-take-off-time',
   standalone: true,
-  imports: [HeaderComponent, HourCostFlightComponent, LoadingScreenComponent, MatIconModule],
+  imports: [DatePipe, HeaderComponent, HourCostFlightComponent, LoadingScreenComponent, MatIconModule],
   templateUrl: './select-take-off-time.component.html',
   styleUrl: './select-take-off-time.component.scss'
 })

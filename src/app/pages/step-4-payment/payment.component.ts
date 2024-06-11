@@ -55,6 +55,7 @@ export class PaymentComponent implements OnInit {
     this.screenStatus = 'loading'
     this.screenStatusDescription = 'Conectando con PayPal ...'
     setTimeout(() => {
+      this.flightData.paypalTransactionID = '0T806222S2590951M'
       this.queryService.post<FlightBookingResponse>(FlightBookingAPI.booking, this.flightData)
         .subscribe({
           next: (response) => {

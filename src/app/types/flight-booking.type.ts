@@ -6,13 +6,14 @@ type CountryType = {
 type TripWay = 'oneway' | 'roundtrip'
 
 type FlightBookingType = {
-    departDay: Date | null;
+    departDate: Date | null;
     destiny: CountryType;
     departFlightInfo?: FlightInfoType;
     returnFlightInfo?: FlightInfoType;
     origin: CountryType;
     passengersNumber: number;
     passengers?: PassengerType[];
+    paypalTransactionID?: string;
     principal?: PrincipalType;
     returnDate: Date | null;
     tripWay: TripWay;

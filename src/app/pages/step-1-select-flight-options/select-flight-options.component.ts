@@ -131,7 +131,7 @@ export class SelectFlightOptionsComponent implements OnInit {
 
   next() {
     this.flightBookingService.flightBookingForm = {
-      departDay: this._getFormValues(this.formControlNames.departDate),
+      departDate: this._getFormValues(this.formControlNames.departDate),
       destiny: this._getFormValues(this.formControlNames.destiny),
       origin: this._getFormValues(this.formControlNames.origin),
       passengersNumber: this._getFormValues(this.formControlNames.passengersNumber),
