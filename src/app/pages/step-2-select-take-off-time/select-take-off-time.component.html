@@ -1,36 +1,15 @@
-<section class="take-off mt-16">
-    <fb-header title="Seleccionar vuelos" (back)="back()"></fb-header>
-    <div class="row center mt-16">
-        <mat-icon
-            aria-hidden="false"
-            aria-label="Ida"
-            fontIcon="flight_takeoff"
-        ></mat-icon>
-        <span class="route-text ml-8">Ida: {{fbService.flightBookingForm.origin.value}} a {{fbService.flightBookingForm.destiny.value}}</span>
-    </div>
-    @for(flight of originFlights; track flight.id) {
-        <div class="mt-16">
-            <fb-hour-cost-flight 
-            [arrivedHour]="flight.arrivedHour" 
-            [destinyIata]="flight.destinyIata"
-            [durationTime]="flight.durationTime"
-            [flightCost]="flight.flightCost"
-            [operator]="flight.operator"
-            [originIata]="flight.originIata"
-            [takeOffHour]="flight.takeOffHour"
-            (selectFlightEvent)="onDepartFlightSelected(flight)"></fb-hour-cost-flight>
-        </div>
-    }
-    @if (showReturnSection && fbService.flightBookingForm.tripWay === 'roundtrip'){
+@if (screenStatus === 'normal') {
+    <section class="take-off mt-16">
+        <fb-header title="Seleccionar vuelos" (back)="back()"></fb-header>
         <div class="row center mt-16">
             <mat-icon
                 aria-hidden="false"
-                aria-label="Vuelta"
-                fontIcon="flight_land"
+                aria-label="Ida"
+                fontIcon="flight_takeoff"
             ></mat-icon>
-            <span class="route-text ml-8">Vuelta: {{fbService.flightBookingForm.destiny.value}} a {{fbService.flightBookingForm.origin.value}}</span>
+            <span class="route-text ml-8">Ida: {{fbService.flightBookingForm.origin.value}} a {{fbService.flightBookingForm.destiny.value}}</span>
         </div>
-        @for(flight of returnFlights; track flight.id) {
+        @for(flight of originFlights; track flight.id) {
             <div class="mt-16">
                 <fb-hour-cost-flight 
                 [arrivedHour]="flight.arrivedHour" 
@@ -40,8 +19,34 @@
                 [operator]="flight.operator"
                 [originIata]="flight.originIata"
                 [takeOffHour]="flight.takeOffHour"
-                (selectFlightEvent)="onReturnFlightSelected(flight)"></fb-hour-cost-flight>
+                (selectFlightEvent)="onDepartFlightSelected(flight)"></fb-hour-cost-flight>
             </div>
         }
-      }
-</section>
+        @if (showReturnSection && fbService.flightBookingForm.tripWay === 'roundtrip'){
+            <div class="row center mt-16">
+                <mat-icon
+                    aria-hidden="false"
+                    aria-label="Vuelta"
+                    fontIcon="flight_land"
+                ></mat-icon>
+                <span class="route-text ml-8">Vuelta: {{fbService.flightBookingForm.destiny.value}} a {{fbService.flightBookingForm.origin.value}}</span>
+            </div>
+            @for(flight of returnFlights; track flight.id) {
+                <div class="mt-16">
+                    <fb-hour-cost-flight 
+                    [arrivedHour]="flight.arrivedHour" 
+                    [destinyIata]="flight.destinyIata"
+                    [durationTime]="flight.durationTime"
+                    [flightCost]="flight.flightCost"
+                    [operator]="flight.operator"
+                    [originIata]="flight.originIata"
+                    [takeOffHour]="flight.takeOffHour"
+                    (selectFlightEvent)="onReturnFlightSelected(flight)"></fb-hour-cost-flight>
+                </div>
+            }
+          }
+    </section>
+}
+@if(screenStatus === 'loading') {
+    <fb-loading-screen></fb-loading-screen>
+}

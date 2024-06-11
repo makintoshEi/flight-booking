@@ -8,11 +8,13 @@ import { FlightBookingAPI, FlightsBookingRoute } from '../../app.constants';
 import { QueryService } from '../../services/query/query.service';
 import { tap } from 'rxjs';
 import { HeaderComponent } from '../../components/header/header.component'
+import { LoadingScreenComponent } from '../../components/loading-screen/loading-screen.component'
+import { ScreeStatusType } from '../../types/screen-status.type'
 
 @Component({
   selector: 'app-select-take-off-time',
   standalone: true,
-  imports: [HeaderComponent, HourCostFlightComponent, MatIconModule],
+  imports: [HeaderComponent, HourCostFlightComponent, LoadingScreenComponent, MatIconModule],
   templateUrl: './select-take-off-time.component.html',
   styleUrl: './select-take-off-time.component.scss'
 })
@@ -21,6 +23,7 @@ export class SelectTakeOffTimeComponent implements OnInit {
   originFlights: FlightInfoType[] = []
   returnFlights: FlightInfoType[] = []
   showReturnSection = false
+  screenStatus: ScreeStatusType = 'loading'
 
   constructor(
     private navigateService: NavigationService,
@@ -34,6 +37,7 @@ export class SelectTakeOffTimeComponent implements OnInit {
         {
           next: (response) => {
             this.originFlights = response.flights;
+            this.screenStatus = 'normal'
           },
           error: (err) => {
             console.error(err)
@@ -48,6 +52,7 @@ export class SelectTakeOffTimeComponent implements OnInit {
   }
 
   onDepartFlightSelected(flightSelected: FlightInfoType) {
+    this.screenStatus = 'loading'
     this.fbService.flightBookingForm.departFlightInfo = flightSelected
     if (this.fbService.flightBookingForm.tripWay === 'roundtrip') {
       this.getFlights(this.fbService.flightBookingForm.destiny.key, this.fbService.flightBookingForm.origin.key)
@@ -56,6 +61,7 @@ export class SelectTakeOffTimeComponent implements OnInit {
             next: (response) => {
               this.returnFlights = response.flights;
               this.showReturnSection = true
+              this.screenStatus = 'normal'
             },
             error: (err) => {
               console.error(err)
