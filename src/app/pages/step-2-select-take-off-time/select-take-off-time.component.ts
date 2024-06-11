@@ -5,6 +5,7 @@ import { NavigationService } from '../../services';
 import { HourCostFlightComponent } from '../../components/hour-cost-flight/hour-cost-flight.component'
 import { FlightInfoType, FlightSearchResponse } from '../../types/flight-booking.type';
 import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 import { FlightBookingAPI, FlightsBookingRoute } from '../../app.constants';
 import { QueryService } from '../../services/query/query.service';
 import { HeaderComponent } from '../../components/header/header.component'
@@ -15,7 +16,7 @@ import { DatePipe } from '@angular/common';
 @Component({
   selector: 'app-select-take-off-time',
   standalone: true,
-  imports: [DatePipe, HeaderComponent, HourCostFlightComponent, LoadingScreenComponent, MatIconModule],
+  imports: [DatePipe, HeaderComponent, HourCostFlightComponent, LoadingScreenComponent, MatButtonModule, MatIconModule],
   templateUrl: './select-take-off-time.component.html',
   styleUrl: './select-take-off-time.component.scss'
 })
@@ -53,7 +54,7 @@ export class SelectTakeOffTimeComponent implements OnInit {
   }
 
   onDepartFlightSelected(flightSelected: FlightInfoType) {
-    this.resetSelectedFlights()
+    this.resetSelectedFlights(this.originFlights)
     flightSelected.isSelected = true
     this.screenStatus = 'loading'
     this.fbService.flightBookingForm.departFlightInfo = flightSelected
@@ -77,8 +78,9 @@ export class SelectTakeOffTimeComponent implements OnInit {
   }
 
   onReturnFlightSelected(flightSelected: FlightInfoType) {
+    this.resetSelectedFlights(this.returnFlights)
+    flightSelected.isSelected = true
     this.fbService.flightBookingForm.returnFlightInfo = flightSelected
-    this.next()
   }
 
   next() {
@@ -89,8 +91,8 @@ export class SelectTakeOffTimeComponent implements OnInit {
     this.navigateService.navigateToLocal('...')
   }
 
-  resetSelectedFlights() {
-    this.originFlights.forEach(flight => flight.isSelected = false)
+  resetSelectedFlights(flights: FlightInfoType[]) {
+    flights.forEach(flight => flight.isSelected = false)
   }
 
 }
