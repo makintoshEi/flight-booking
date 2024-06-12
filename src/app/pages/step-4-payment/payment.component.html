@@ -1,38 +1,30 @@
-<section class="main-container">
-    <div class="column">
-        <h1>Resumen de compra</h1>
-        <h2>
-            {{+flightData.passengersNumber > 1 ? 'Vuelos' : 'Vuelo'}}
-        </h2>
-        <fb-flight-resume
-            [arrivedHour]="flightData.departFlightInfo?.arrivedHour"
-            [destiny]="flightData.destiny.value"
-            [flightDate]="flightData.departDay"
-            flightType="Ida"
-            [origin]="flightData.origin.value"
-            [takeOffHour]="flightData.departFlightInfo?.takeOffHour"
-        ></fb-flight-resume>
-        @if (flightData.tripWay === 'roundtrip') {
-            <fb-flight-resume
-                [arrivedHour]="flightData.returnFlightInfo?.arrivedHour"
-                [destiny]="flightData.origin.value"
-                [flightDate]="flightData.returnDate"
-                flightType="Vuelta"
-                [origin]="flightData.destiny.value"
-                [takeOffHour]="flightData.returnFlightInfo?.takeOffHour"
-            ></fb-flight-resume>
-        }
-        <div class="row">
-            <mat-icon
-                aria-hidden="false"
-                aria-label="Número de pasajeros"
-                fontIcon="person"
-            ></mat-icon>
-            <span class="ml-8">{{flightData.passengersNumber}}</span>
+@if (screenStatus === 'normal') {
+    <section class="payment">
+        <fb-resume
+            [flightData]="flightData"
+            [totalAmount]="totalAmount"
+        ></fb-resume>
+        <div class="row mt-16">
+            <button
+                class="full-width button"
+                mat-stroked-button
+                color="primary"
+                (click)="doPayment()"
+            >
+                <mat-icon>
+                    <img
+                        width="20px"
+                        height="20px"
+                        alt="Paga con paypal"
+                        src="assets/paypal-logo.svg"
+                    >
+                </mat-icon>
+                Pagar con paypal
+            </button>
         </div>
-        <div class="row">
-            <span>Total a pagar</span>
-            <span>{{totalAmount | currency:'USD':''}}</span>
-        </div>
-    </div>
-</section>
+    </section>
+}
+
+@if (screenStatus === 'loading') {
+    <fb-loading-screen [description]="screenStatusDescription"></fb-loading-screen>
+}

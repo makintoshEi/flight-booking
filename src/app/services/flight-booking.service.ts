@@ -5,20 +5,21 @@ import { CountryType, FlightBookingType, FlightInfoType } from "../types/flight-
     providedIn: 'root'
 })
 export class FlightBookingService {
-    flightBookingForm: FlightBookingType = this._getCleanContext()
+    flightBookingForm: FlightBookingType = this.getCleanContext()
 
     resetContext() {
-        this.flightBookingForm = this._getCleanContext()
+        this.flightBookingForm = this.getCleanContext()
     }
 
-    private _getCleanContext(): FlightBookingType {
+    getCleanContext(): FlightBookingType {
         return {
-            departDay: null,
+            departDate: null,
             destiny: this._getCleanCountryContext(),
             departFlightInfo: this._getCleanFlightInfoContext(),
             origin: this._getCleanCountryContext(),
-            passengersNumber: '0',
+            passengersNumber: 0,
             passengers: [],
+            paypalTransactionID: '',
             principal: {
                 email: '',
                 phoneNumber: ''
@@ -36,6 +37,7 @@ export class FlightBookingService {
             durationTime: '',
             flightCost: '',
             id: '',
+            isSelected: false,
             operator: '',
             originIata: '',
             takeOffHour: '',

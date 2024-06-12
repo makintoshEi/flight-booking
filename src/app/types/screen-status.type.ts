@@ -1,0 +1,1 @@
+export type ScreeStatusType = 'loading' | 'normal' | 'error'

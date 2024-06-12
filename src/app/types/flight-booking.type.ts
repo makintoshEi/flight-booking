@@ -6,13 +6,14 @@ type CountryType = {
 type TripWay = 'oneway' | 'roundtrip'
 
 type FlightBookingType = {
-    departDay: Date | null;
+    departDate: Date | null;
     destiny: CountryType;
     departFlightInfo?: FlightInfoType;
     returnFlightInfo?: FlightInfoType;
     origin: CountryType;
-    passengersNumber: string;
+    passengersNumber: number;
     passengers?: PassengerType[];
+    paypalTransactionID?: string;
     principal?: PrincipalType;
     returnDate: Date | null;
     tripWay: TripWay;
@@ -23,6 +24,7 @@ type FlightInfoType = {
     destinyIata: string;
     durationTime: string;
     id: string;
+    isSelected: boolean;
     operator: 'avianca' | 'jetsmart' | ''
     originIata: string;
     takeOffHour: string;
@@ -51,7 +53,12 @@ type FlightConfirmationResponse = {
     totalAmount: number;
 }
 
+type FlightBookingResponse = {
+    bookingStatus: 'success' | 'error';
+    message: string;
+}
+
 export {
-    CountryType, FlightBookingType, FlightConfirmationResponse, FlightInfoType,
+    CountryType, FlightBookingType, FlightBookingResponse, FlightConfirmationResponse, FlightInfoType,
     FlightSearchResponse, PassengerType, TripWay
 }

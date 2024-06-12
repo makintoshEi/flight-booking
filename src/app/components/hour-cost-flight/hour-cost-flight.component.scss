@@ -7,6 +7,22 @@ $breakpoint-tablet: 61.9375rem;
     cursor: pointer;
     justify-content: space-between;
     padding: 2.125rem 1.4375rem 1.375rem 2.625rem;
+    -webkit-user-select: none;
+    /* Safari */
+    -ms-user-select: none;
+    /* IE 10 and IE 11 */
+    user-select: none;
+    /* Standard syntax */
+    
+    &__selected,
+    &:hover {
+        border: 1px solid #ff4081;
+        background-color: #ffe6ee;
+    }
+
+    &:active {
+        background-color: #ffd2e1;
+    }
 
     & .center {
         align-items: center;

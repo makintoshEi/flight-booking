@@ -8,11 +8,12 @@ import { MatButtonModule } from '@angular/material/button'
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FlightsBookingRoute } from '../../app.constants';
+import { HeaderComponent } from '../../components/header/header.component'
 
 @Component({
   selector: 'app-passenger-info',
   standalone: true,
-  imports: [MatButtonModule, MatFormFieldModule, MatInputModule, PersonInfoComponent, ReactiveFormsModule],
+  imports: [HeaderComponent, MatButtonModule, MatFormFieldModule, MatInputModule, PersonInfoComponent, ReactiveFormsModule],
   templateUrl: './passenger-info.component.html',
   styleUrl: './passenger-info.component.scss'
 })
@@ -37,7 +38,7 @@ export class PassengerInfoComponent implements OnInit {
       [PICONSTANT.FORM.EMAIL]: new FormControl(null, [Validators.required, Validators.email]),
       [PICONSTANT.FORM.PHONENUMBER]: new FormControl(null, [Validators.required, Validators.pattern(/^(?:[+\d].*\d|\d)$/)]),
     })
-    for (let i = 0; i < 1; i++) {
+    for (let i = 0; i < this.fbService.flightBookingForm.passengersNumber; i++) {
       this.passengerForms.push(this.getFormGroup())
     }
   }
@@ -64,7 +65,12 @@ export class PassengerInfoComponent implements OnInit {
     }
   }
 
+  back() {
+    this.navigationService.navigateToLocal('...');
+  }
+
   setPassengersData() {
+    this.fbService.flightBookingForm.passengers = []
     this.passengerForms.forEach(form => {
       this.fbService.flightBookingForm.passengers?.push({
         birthDate: form.get(PICONSTANT.FORM.BIRTHDATE)?.value,

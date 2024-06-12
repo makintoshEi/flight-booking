@@ -1,17 +1,22 @@
 import { Component, OnInit } from '@angular/core';
+import { tap } from 'rxjs';
 import { FlightBookingService } from '../../services/flight-booking.service';
 import { NavigationService } from '../../services';
 import { HourCostFlightComponent } from '../../components/hour-cost-flight/hour-cost-flight.component'
 import { FlightInfoType, FlightSearchResponse } from '../../types/flight-booking.type';
 import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 import { FlightBookingAPI, FlightsBookingRoute } from '../../app.constants';
 import { QueryService } from '../../services/query/query.service';
-import { tap } from 'rxjs';
+import { HeaderComponent } from '../../components/header/header.component'
+import { LoadingScreenComponent } from '../../components/loading-screen/loading-screen.component'
+import { ScreeStatusType } from '../../types/screen-status.type'
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-select-take-off-time',
   standalone: true,
-  imports: [HourCostFlightComponent, MatIconModule],
+  imports: [DatePipe, HeaderComponent, HourCostFlightComponent, LoadingScreenComponent, MatButtonModule, MatIconModule],
   templateUrl: './select-take-off-time.component.html',
   styleUrl: './select-take-off-time.component.scss'
 })
@@ -20,6 +25,7 @@ export class SelectTakeOffTimeComponent implements OnInit {
   originFlights: FlightInfoType[] = []
   returnFlights: FlightInfoType[] = []
   showReturnSection = false
+  screenStatus: ScreeStatusType = 'loading'
 
   constructor(
     private navigateService: NavigationService,
@@ -33,6 +39,7 @@ export class SelectTakeOffTimeComponent implements OnInit {
         {
           next: (response) => {
             this.originFlights = response.flights;
+            this.screenStatus = 'normal'
           },
           error: (err) => {
             console.error(err)
@@ -47,6 +54,9 @@ export class SelectTakeOffTimeComponent implements OnInit {
   }
 
   onDepartFlightSelected(flightSelected: FlightInfoType) {
+    this.resetSelectedFlights(this.originFlights)
+    flightSelected.isSelected = true
+    this.screenStatus = 'loading'
     this.fbService.flightBookingForm.departFlightInfo = flightSelected
     if (this.fbService.flightBookingForm.tripWay === 'roundtrip') {
       this.getFlights(this.fbService.flightBookingForm.destiny.key, this.fbService.flightBookingForm.origin.key)
@@ -55,6 +65,7 @@ export class SelectTakeOffTimeComponent implements OnInit {
             next: (response) => {
               this.returnFlights = response.flights;
               this.showReturnSection = true
+              this.screenStatus = 'normal'
             },
             error: (err) => {
               console.error(err)
@@ -67,12 +78,21 @@ export class SelectTakeOffTimeComponent implements OnInit {
   }
 
   onReturnFlightSelected(flightSelected: FlightInfoType) {
+    this.resetSelectedFlights(this.returnFlights)
+    flightSelected.isSelected = true
     this.fbService.flightBookingForm.returnFlightInfo = flightSelected
-    this.next()
   }
 
   next() {
     this.navigateService.navigateToLocal(FlightsBookingRoute.StepThree)
+  }
+
+  back() {
+    this.navigateService.navigateToLocal('...')
+  }
+
+  resetSelectedFlights(flights: FlightInfoType[]) {
+    flights.forEach(flight => flight.isSelected = false)
   }
 
 }

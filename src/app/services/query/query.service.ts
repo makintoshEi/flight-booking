@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 })
 export class QueryService {
 
-  domain = 'http://localhost:5000'
+  domain = 'http://localhost:5000/api/v1/flights'
   constructor(private http: HttpClient) { }
 
   get<T>(path: string) {

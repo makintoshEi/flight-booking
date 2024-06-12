@@ -14,6 +14,7 @@ export class FlightResumeComponent {
   destiny = input('')
   flightDate = input<Date | null>()
   flightType = input<'Ida' | 'Vuelta'>('Ida')
+  operator = input<string>()
   origin = input('')
   takeOffHour = input<string | undefined>('')
 }
