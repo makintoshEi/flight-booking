@@ -88,7 +88,7 @@ export class SelectTakeOffTimeComponent implements OnInit {
   }
 
   back() {
-    this.navigateService.navigateToLocal('...')
+    this.navigateService.goBack()
   }
 
   resetSelectedFlights(flights: FlightInfoType[]) {
