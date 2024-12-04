@@ -21,7 +21,7 @@ export class VehicleSalesComponent {
   selectedVehicle = signal<Vehicle | undefined>(undefined);
   quantity = signal<number>(1);
 
-  color = computed<'green' | 'red'>(() => this.totalValue() > 50000 ? 'green' : 'red');
+  color = computed<'green' | 'black'>(() => this.totalValue() > 50000 ? 'green' : 'black');
   totalValue = computed(() => (this.selectedVehicle()?.price ?? 0) * this.quantity());
 
   onSelectVehicle(ele: EventTarget | null) {
@@ -29,6 +29,7 @@ export class VehicleSalesComponent {
     const foundVehicle = this.vehicles().find((v) => v.id === id);
     if (foundVehicle) {
       this.selectedVehicle.set(foundVehicle) // signal changes
+      this.quantity.set(1);
     }
   }
 
