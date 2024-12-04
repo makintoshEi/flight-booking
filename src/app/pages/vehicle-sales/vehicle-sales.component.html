@@ -1,0 +1,23 @@
+<section class="vehicle-container">
+    <h1>Vehicle Sales</h1>
+    <div>
+        <label>Select a vehicle</label>
+        <select (change)="onSelectVehicle($event.target)">
+            <option value="" disabled selected>--Select a vehicle--</option>
+            @for (vehicle of vehicles(); track vehicle) {
+            <option [value]="vehicle.id">{{vehicle.name}}</option>
+            }
+        </select>
+    </div>
+    <div>
+        <label>Quantity: </label>
+        <input matInput [value]="quantity()" (change)="onQuantityChange($event.target)" type="number">
+    </div>
+    <div>
+        <label for="">Vehicle: {{selectedVehicle()?.name}}</label>
+    </div>
+    <div>
+        <label>Total: </label>
+        <label [style]="{color: color()}">{{totalValue()}}</label>
+    </div>
+</section>

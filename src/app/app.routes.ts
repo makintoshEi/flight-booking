@@ -6,7 +6,7 @@ export const routes: Routes = [
     {
         path: '',
         pathMatch: 'full',
-        redirectTo: FlightsBookingRoute.StepOne
+        redirectTo: FlightsBookingRoute.VehicleSales
     },
     {
         path: FlightsBookingRoute.StepOne,
@@ -30,6 +30,11 @@ export const routes: Routes = [
         loadComponent: () => import('./pages/step-4-payment/payment.component')
             .then(m => m.PaymentComponent),
         canActivate: [isAuthGuard]
+    },
+    {
+        path: FlightsBookingRoute.VehicleSales,
+        loadComponent: () => import('./pages/vehicle-sales/vehicle-sales.component')
+            .then(m => m.VehicleSalesComponent)
     },
     {
         path: '**',

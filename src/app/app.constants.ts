@@ -2,7 +2,8 @@ export const FlightsBookingRoute = {
     StepOne: 'flight-options',
     StepTwo: 'take-off',
     StepThree: 'passenger-info',
-    StepFour: 'payment'
+    StepFour: 'payment',
+    VehicleSales: 'vehicle-sales',
 }
 
 export const FlightBookingAPI = {
